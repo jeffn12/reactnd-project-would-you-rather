@@ -19,7 +19,7 @@ In order to run this application locally, you must have installed:
 
 # Thanks
 
-### Udactiy
+### Udacity
 The "\_DATA.js" file is from the [udacity/reactnd-project-would-you-rather-starter](https://github.com/udacity/reactnd-project-would-you-rather-starter) repository.
 
 ### create-react-app
