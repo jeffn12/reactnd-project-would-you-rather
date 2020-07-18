@@ -96,9 +96,23 @@ _Image Files (.tif) for Views Available Upon Request_
 
 ##### Redux Store:
 
-1. authedUser (current user of the appl)
-1. poll data (information about each poll)
-1. user data (information about each user)
+- authedUser (current user of the appl)
+  - id: (string)
+- poll data (object, key = question id)
+  - id: (string)
+  - author: (string - user.id)
+  - timestamp: (number)
+  - optionOne: (object)
+    - votes: (array of user ids)
+    - text: (string)
+  - optionTwo: (object)
+    - votes: (array of user ids)
+    - text: (string)
+- user data (object, key = user id)
+  - id: (string)
+  - avatarURL: (string)
+  - answers: (object) { [_id]: (string - optionOne || optionTwo) }
+  - questions: (array) [_ids]
 
 ##### React State: (for controlled components only)
 
