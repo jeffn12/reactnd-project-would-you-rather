@@ -59,4 +59,37 @@ _Image Files (.tif) for Views Available Upon Request_
 
 ### Events
 
+- NavBar
+  1. get username data
+- AddPoll
+  1. get user data
+  1. set poll data
+- Home
+  1. get user data
+  1. get poll data
+  - PollList
+    1. show Poll components
+  - Poll
+    1. get poll data
+- Leaderboard
+  1. show LeaderBoardEntry components
+  - LeaderBoardEntry
+    1. get user data
+    1. get poll data
+- Login
+  1. set authedUser data
+  - UserChooser
+    1. get user data
+- Question View
+  1. get poll data
+  1. get authedUser data
+  - Poll
+    1. get poll data
+    1. get user data
+    1. get authedUser data
+  - Choice
+    1. get user data
+    1. get poll data
+    1. get authedUser data
+
 ### Data Structure and Locations
