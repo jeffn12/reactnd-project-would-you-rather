@@ -93,3 +93,13 @@ _Image Files (.tif) for Views Available Upon Request_
     1. get authedUser data
 
 ### Data Structure and Locations
+
+##### Redux Store:
+
+1. authedUser (current user of the appl)
+1. poll data (information about each poll)
+1. user data (information about each user)
+
+##### React State: (for controlled components only)
+
+1. AddPoll will use local state to store the values of each input field
