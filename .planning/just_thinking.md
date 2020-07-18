@@ -5,6 +5,7 @@
   - [ ] leaderboard
   - [ ] create new poll
   - [ ] switch user
+  - [ ] current user
 - [ ] login
   - [ ] user picker
   - [ ] submit
@@ -12,7 +13,7 @@
   - [ ] Navigation
   - [ ] polls (unanswered by default)
   - [ ] toggle polls (answered v. unanswered)
-  - [ ] shows authedUser
+  - [ ] shows authedUser (in Navbar?)
 - [ ] questions/:question_id
   - [ ] title text="would you rather?"
   - [ ] avatar of user that posted
@@ -41,7 +42,20 @@ _Image Files (.tif) for Views Available Upon Request_
 
 ### Components
 
-- [ ] NavBar
+- Navigation View (NavBar)
+  - [ ] NavBar
+- Add Poll View (AddPoll)
+  - [ ] AddPoll form
+- Home View (Home)
+  - [ ] PollList
+  - [ ] Poll
+- Leaderboard View (Leaderboard)
+  - [ ] LeaderBoardEntry
+- Login View
+  - [ ] UserChooser
+- Question View
+  - [ ] Poll
+  - [ ] Choice
 
 ### Events
 
