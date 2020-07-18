@@ -1,20 +1,24 @@
-### Views
+## Planning for the "Would You Rather?" App
 
-- [ ] navagation
+---
+
+#### Views
+
+- navagation
   - [ ] home page
   - [ ] leaderboard
   - [ ] create new poll
   - [ ] switch user
   - [ ] current user
-- [ ] login
+- login
   - [ ] user picker
   - [ ] submit
-- [ ] home
+- home
   - [ ] Navigation
   - [ ] polls (unanswered by default)
   - [ ] toggle polls (answered v. unanswered)
   - [ ] shows authedUser (in Navbar?)
-- [ ] questions/:question_id
+- questions/:question_id
   - [ ] title text="would you rather?"
   - [ ] avatar of user that posted
   - [ ] the poll question
@@ -23,24 +27,26 @@
   - [ ] if answered by authedUser
     - [ ] each option shows stats (# of votes, percentage of votes)
     - [ ] visual indicator of authedUser's vote
-- [ ] add poll
+- add poll
   - [ ] title text="would you rather?"
   - [ ] input form to create:
     - [ ] question
     - [ ] 2 options to vote on
     - [ ] submit, w/ redirect to home view
-- [ ] leaderboard
+- leaderboard
   - [ ] entries in order of total # of questions asked and answered
   - [ ] entry contains
     - [ ] username
     - [ ] avatar
     - [ ] # of questions asked
     - [ ] # of questions answered
-- [ ] 404 question not found
+- 404 question not found
 
 _Image Files (.tif) for Views Available Upon Request_
 
-### Components
+---
+
+#### Components
 
 - Navigation View (NavBar)
   - [ ] NavBar
@@ -57,44 +63,28 @@ _Image Files (.tif) for Views Available Upon Request_
   - [ ] Poll
   - [ ] Choice
 
-### Events
+---
 
-- NavBar
-  1. get username data
-- AddPoll
-  1. get user data
-  1. set poll data
-- Home
-  1. get user data
-  1. get poll data
-  - PollList
-    1. show Poll components
-  - Poll
-    1. get poll data
-- Leaderboard
-  1. show LeaderBoardEntry components
-  - LeaderBoardEntry
-    1. get user data
-    1. get poll data
-- Login
-  1. set authedUser data
-  - UserChooser
-    1. get user data
-- Question View
-  1. get poll data
-  1. get authedUser data
-  - Poll
-    1. get poll data
-    1. get user data
-    1. get authedUser data
-  - Choice
-    1. get user data
-    1. get poll data
-    1. get authedUser data
+#### Events
 
-### Data Structure and Locations
+- NavBar: get username data
+- AddPoll: get user data, set poll data
+- Home: get user data, get poll data
+  - PollList: show Poll components
+  - Poll: get poll data
+- Leaderboard: show LeaderBoardEntry components
+  - LeaderBoardEntry: get user data, get poll data
+- Login: set authedUser data
+  - UserChooser: get user data
+- Question View: get poll data, get authedUser data
+  - Poll: get poll data, get user data, get authedUser data
+  - Choice: get user data, get poll data, get authedUser data
 
-##### Redux Store:
+---
+
+#### Data Structure and Locations
+
+###### Redux Store:
 
 - authedUser (current user of the appl)
   - id: (string)
@@ -114,6 +104,6 @@ _Image Files (.tif) for Views Available Upon Request_
   - answers: (object) { [_id]: (string - optionOne || optionTwo) }
   - questions: (array) [_ids]
 
-##### React State: (for controlled components only)
+###### React State: (for controlled components only)
 
 1. AddPoll will use local state to store the values of each input field
