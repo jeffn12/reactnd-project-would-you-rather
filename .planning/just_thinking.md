@@ -80,6 +80,14 @@ _Image Files (.tif) for Views Available Upon Request_
   - Poll: get poll data, get user data, get authedUser data
   - Choice: get user data, get poll data, get authedUser data
 
+##### Actions:
+
+- [x] set authed user
+- [x] get polls
+- [x] get users
+- [ ] add a poll
+- [ ] add a poll answer
+
 ---
 
 #### Data Structure and Locations
