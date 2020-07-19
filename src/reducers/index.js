@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
 
-import authedUserReducer from "./authedUser";
-import userReducer from "./users";
-import pollsReducer from "./polls";
+import { authedUserReducer } from "./authedUser";
+import { usersReducer } from "./users";
+import { pollsReducer } from "./polls";
 
 export default combineReducers({
   authedUserReducer,
-  userReducer,
+  usersReducer,
   pollsReducer
 });
