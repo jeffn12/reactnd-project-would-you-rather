@@ -3,4 +3,4 @@ import thunk from "redux-thunk";
 
 import { logger } from "./logger";
 
-export default applyMiddleware(logger, thunk);
+export default applyMiddleware(thunk, logger);
