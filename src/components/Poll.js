@@ -3,10 +3,20 @@ import { connect } from "react-redux";
 
 export class Poll extends Component {
   render() {
-    return <div>I'm a Poll</div>;
+    const { polls, id } = this.props;
+    return polls[id] ? (
+      <p>{`${polls[id].optionOne.text} or ${polls[id].optionTwo.text}?`}</p>
+    ) : (
+      <p>Not Found</p>
+    );
   }
 }
 
-const mapStateToProps = () => {};
+const mapStateToProps = ({ polls }, { id }) => {
+  return {
+    polls,
+    id
+  };
+};
 
-export default connect()(Poll);
+export default connect(mapStateToProps)(Poll);

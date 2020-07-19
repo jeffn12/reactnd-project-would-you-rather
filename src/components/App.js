@@ -3,10 +3,10 @@ import { connect } from "react-redux";
 
 // Components
 import NavBar from "./NavBar";
-import Poll from "./Poll";
 import PollList from "./PollList";
 // Helpers
 import { handleInitialData } from "../actions/shared";
+import { ANSWERED, NOT_ANSWERED } from "./PollList";
 
 export class App extends Component {
   componentDidMount = () => {
@@ -18,8 +18,7 @@ export class App extends Component {
       <div>
         <NavBar />
         Would You Rather?
-        <PollList />
-        <Poll />
+        <PollList filter={ANSWERED} />
       </div>
     );
   }
