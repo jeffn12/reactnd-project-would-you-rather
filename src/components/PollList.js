@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// Components
+import Poll from "./Poll";
 
 export class PollList extends Component {
   render() {
@@ -8,7 +10,9 @@ export class PollList extends Component {
     return (
       <ul>
         {pollIds.map((id) => (
-          <li key={id}>Hey There!</li>
+          <li key={id}>
+            <Poll id={id} />
+          </li>
         ))}
       </ul>
     );
