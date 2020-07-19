@@ -3,7 +3,7 @@ import { getPolls } from "./polls";
 import { getUsers } from "./users";
 import { setAuthedUser } from "./authedUser";
 
-const AUTHED_USER = "tylermcginnis"; //for testing purposes... TODO: authed user will be set from login screen
+const AUTHED_USER = "jeffn12"; //for testing purposes... TODO: authed user will be set from login screen
 
 export const handleInitialData = () => {
   return (dispatch) => {
