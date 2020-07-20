@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Material UI Components
-import { AppBar, Box, Toolbar, Typography } from "@material-ui/core";
+import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
 
 export class NavBar extends Component {
   render() {
@@ -22,6 +22,7 @@ export class NavBar extends Component {
               </Typography>
             </Box>
             <Box display="flex" justifyContent="end" flexShrink={1}>
+              {authedUser && <Avatar src={authedUser.avatarURL} />}
               <Typography variant="h6" className="nav-link current-user">
                 {authedUser ? `welcome, ${authedUser}!` : "login"}
               </Typography>

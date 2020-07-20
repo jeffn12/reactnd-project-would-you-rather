@@ -45,7 +45,7 @@ let users = {
   jeffn12: {
     id: "jeffn12",
     name: "Jeff Neuberger",
-    avatarURL: "",
+    avatarURL: "jeffn12_avatar.jpg",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
