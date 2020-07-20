@@ -2,7 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
 // Material UI Components
-import { Avatar, Card, CardHeader, CardContent } from "@material-ui/core";
+import {
+  Avatar,
+  Card,
+  CardHeader,
+  CardContent,
+  Typography
+} from "@material-ui/core";
 /**
  * TODO:
  *  Put each poll on its own 'Card'!
@@ -19,7 +25,9 @@ export class Poll extends Component {
           title={`${author.name} want to know:`}
           subheader="would you rather..."
         />
-        {`${polls[id].optionOne.text} or ${polls[id].optionTwo.text}?`}
+        <CardContent>
+          <Typography>{`${polls[id].optionOne.text} or ${polls[id].optionTwo.text}?`}</Typography>
+        </CardContent>
       </Card>
     ) : (
       <Card>Not Found</Card>
