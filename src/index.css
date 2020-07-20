@@ -11,12 +11,12 @@ code {
 }
 
 /* NavBar Styling */
-.nav-bar {
-  background-color: #aaa;
-  padding: 10px;
-}
 
 .nav-link {
-  padding: 5px;
   color: white;
+  padding: 5px;
+}
+
+.current-user {
+  text-align: end;
 }
