@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
 import Poll from "./Poll";
+// Material UI Components
+import { Box } from "@material-ui/core";
 
 export const ANSWERED = "ANSWERED";
 export const NOT_ANSWERED = "NOT_ANSWERED";
@@ -24,15 +26,11 @@ export class PollList extends Component {
 
   render() {
     return (
-      <ul>
+      <Box display="flex" flexDirection="column">
         {this.getFilteredPolls().map((id) => {
-          return (
-            <li key={id}>
-              <Poll id={id} />
-            </li>
-          );
+          return <Poll key={id} id={id} />;
         })}
-      </ul>
+      </Box>
     );
   }
 }
