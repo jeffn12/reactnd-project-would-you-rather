@@ -11,7 +11,7 @@ export const handleInitialData = () => {
       ([questions, users]) => {
         dispatch(getPolls(questions));
         dispatch(getUsers(users));
-        dispatch(setAuthedUser(AUTHED_USER));
+        users[AUTHED_USER] && dispatch(setAuthedUser(users[AUTHED_USER]));
       }
     );
   };
