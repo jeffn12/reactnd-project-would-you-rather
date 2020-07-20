@@ -18,7 +18,7 @@ export class App extends Component {
       <div>
         <NavBar />
         Would You Rather?
-        <PollList filter={NOT_ANSWERED} />
+        <PollList filter={ANSWERED} />
       </div>
     );
   }

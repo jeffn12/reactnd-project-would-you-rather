@@ -10,12 +10,15 @@ export const ALL = "ALL";
 export class PollList extends Component {
   getFilteredPolls = () => {
     const { users, pollIds, authedUser, filter } = this.props;
-    if (filter === "ALL") return pollIds;
+    if (filter === "ALL") {
+      return pollIds;
+    }
     const pollList = users[authedUser]
       ? filter === ANSWERED
         ? pollIds.filter((id) => users[authedUser].answers[id])
         : pollIds.filter((id) => !users[authedUser].answers[id])
       : [];
+    console.log(pollList);
     return pollList;
   };
 
@@ -40,7 +43,7 @@ const mapStateToProps = ({ polls, users, authedUser }, { filter }) => {
       (a, b) => polls[b].timestamp - polls[a].timestamp
     ),
     users,
-    authedUser,
+    authedUser: authedUser ? authedUser.id : authedUser,
     filter: filter || false
   };
 };
