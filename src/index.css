@@ -9,14 +9,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-/* NavBar Styling */
-
-.nav-link {
-  color: white;
-  padding: 5px;
-}
-
-.current-user {
-  text-align: end;
-}
