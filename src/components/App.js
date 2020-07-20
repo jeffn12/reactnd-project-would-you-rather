@@ -5,13 +5,7 @@ import { connect } from "react-redux";
 import NavBar from "./NavBar";
 import PollList from "./PollList";
 // Material UI Components
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Container,
-  Tooltip
-} from "@material-ui/core";
+import { Box, Button, ButtonGroup, Paper, Tooltip } from "@material-ui/core";
 // Helpers
 import { handleInitialData } from "../actions/shared";
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
@@ -30,7 +24,7 @@ export class App extends Component {
     return (
       <Box>
         <NavBar />
-        <Container style={{ marginTop: "15px" }}>
+        <Paper elevation={0} style={{ marginTop: "15px" }}>
           <Tooltip
             placement="right-start"
             title="Choose your polls"
@@ -72,7 +66,7 @@ export class App extends Component {
           </Tooltip>
           <h3 style={{ textAlign: "center" }}>Would You Rather?</h3>
           <PollList filter={filter} />
-        </Container>
+        </Paper>
       </Box>
     );
   }
