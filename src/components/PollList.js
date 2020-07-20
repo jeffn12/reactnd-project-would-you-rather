@@ -5,10 +5,12 @@ import Poll from "./Poll";
 
 export const ANSWERED = "ANSWERED";
 export const NOT_ANSWERED = "NOT_ANSWERED";
+export const ALL = "ALL";
 
 export class PollList extends Component {
   getFilteredPolls = () => {
     const { users, pollIds, authedUser, filter } = this.props;
+    if (filter === "ALL") return pollIds;
     const pollList = users[authedUser]
       ? filter === ANSWERED
         ? pollIds.filter((id) => users[authedUser].answers[id])

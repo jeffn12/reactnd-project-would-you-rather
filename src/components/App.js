@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import PollList from "./PollList";
 // Helpers
 import { handleInitialData } from "../actions/shared";
-import { ANSWERED, NOT_ANSWERED } from "./PollList";
+import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
 export class App extends Component {
   componentDidMount = () => {
@@ -18,7 +18,7 @@ export class App extends Component {
       <div>
         <NavBar />
         Would You Rather?
-        <PollList filter={ANSWERED} />
+        <PollList filter={NOT_ANSWERED} />
       </div>
     );
   }
