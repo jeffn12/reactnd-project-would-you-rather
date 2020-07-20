@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 export class NavBar extends Component {
   render() {
+    const { authedUser } = this.props;
     return (
       <nav className="nav-bar">
         <a href="/#" className="nav-link">
@@ -14,14 +15,18 @@ export class NavBar extends Component {
         <a href="/#" className="nav-link">
           Create a New Poll
         </a>
-        <a href="/#" className="nav-link">
-          User Info
+        <a href="/#" className="nav-link current-user">
+          {authedUser}
         </a>
       </nav>
     );
   }
 }
 
-const mapStateToProps = () => {};
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  };
+};
 
-export default connect()(NavBar);
+export default connect(mapStateToProps)(NavBar);
