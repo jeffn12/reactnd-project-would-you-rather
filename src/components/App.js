@@ -31,14 +31,20 @@ export class App extends Component {
             open="true"
             arrow
           >
-            <ButtonGroup size="large" variant="text" fullWidth="true">
+            <ButtonGroup
+              size="large"
+              variant="text"
+              fullWidth="true"
+              color="primary"
+            >
               <Button
                 onClick={() => {
                   this.setState(() => {
                     return { filter: ANSWERED };
                   });
                 }}
-                color={filter === ANSWERED ? "primary" : "default"}
+                variant={filter === ANSWERED ? "contained" : "inherit"}
+                disabled={filter === ANSWERED}
               >
                 answered
               </Button>
@@ -48,7 +54,8 @@ export class App extends Component {
                     return { filter: ALL };
                   });
                 }}
-                color={filter === ALL ? "primary" : "default"}
+                variant={filter === ALL ? "contained" : "inherit"}
+                disabled={filter === ALL}
               >
                 all
               </Button>
@@ -58,7 +65,8 @@ export class App extends Component {
                     return { filter: NOT_ANSWERED };
                   });
                 }}
-                color={filter === NOT_ANSWERED ? "primary" : "default"}
+                variant={filter === NOT_ANSWERED ? "contained" : "inherit"}
+                disabled={filter === NOT_ANSWERED}
               >
                 not answered
               </Button>
