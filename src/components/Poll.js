@@ -9,20 +9,16 @@ import {
   CardContent,
   Typography
 } from "@material-ui/core";
-/**
- * TODO:
- *  Put each poll on its own 'Card'!
- */
 
 export class Poll extends Component {
   render() {
     const { polls, users, id } = this.props;
     const author = users[polls[id].author];
     return polls[id] ? (
-      <Card>
+      <Card style={{ margin: "10px" }}>
         <CardHeader
           avatar={<Avatar src={author.avatarURL} />}
-          title={`${author.name} want to know:`}
+          title={`${author.name} wants to know:`}
           subheader="would you rather..."
         />
         <CardContent>
@@ -30,7 +26,9 @@ export class Poll extends Component {
         </CardContent>
       </Card>
     ) : (
-      <Card>Not Found</Card>
+      <Card>
+        <CardContent>404: Poll Not Found</CardContent>
+      </Card>
     );
   }
 }

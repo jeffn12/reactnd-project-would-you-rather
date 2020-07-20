@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // Components
 import Poll from "./Poll";
 // Material UI Components
-import { Box } from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 export const ANSWERED = "ANSWERED";
 export const NOT_ANSWERED = "NOT_ANSWERED";
@@ -26,11 +26,11 @@ export class PollList extends Component {
 
   render() {
     return (
-      <Box display="flex" flexDirection="column">
+      <Container display="flex" flexDirection="column">
         {this.getFilteredPolls().map((id) => {
           return <Poll key={id} id={id} />;
         })}
-      </Box>
+      </Container>
     );
   }
 }
