@@ -14,10 +14,10 @@
   - [ ] user picker
   - [ ] submit
 - home
-  - [ ] Navigation
-  - [ ] polls (unanswered by default)
-  - [ ] toggle polls (answered v. unanswered)
-  - [ ] shows authedUser (in Navbar?)
+  - [x] Navigation
+  - [x] polls (unanswered by default)
+  - [x] toggle polls (answered v. unanswered)
+  - [x] shows authedUser (in Navbar?)
 - questions/:question_id
   - [ ] title text="would you rather?"
   - [ ] avatar of user that posted
