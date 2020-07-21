@@ -7,12 +7,16 @@ export class AnsweredPollStats extends Component {
   render() {
     const { id, poll, currentUser } = this.props;
 
+    const answers = {
+      one: poll.optionOne.votes.length,
+      two: poll.optionTwo.votes.length,
+      total: poll.optionOne.votes.length + poll.optionTwo.votes.length
+    };
+
     return (
       <div>
-        <Typography>{`${poll.optionOne.text} or ${poll.optionTwo.text}?`}</Typography>
-        <Typography>
-          you would rather: "{poll[currentUser.answers[id]].text}"
-        </Typography>
+        <Typography>{`${poll.optionOne.text} (${answers.one}/${answers.total}):`}</Typography>
+        <Typography>{`${poll.optionTwo.text} (${answers.two}/${answers.total}):`}</Typography>
       </div>
     );
   }
