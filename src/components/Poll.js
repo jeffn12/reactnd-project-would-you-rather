@@ -14,8 +14,6 @@ import {
 // Helpers
 import { handleAnswerPoll } from "../actions/polls";
 
-// Poll has been answered by authedUser if:  exists
-
 export class Poll extends Component {
   handleChange = (option) => {
     const { dispatch, authedUser, id } = this.props;
@@ -40,8 +38,6 @@ export class Poll extends Component {
 
     return (
       <Card style={{ margin: "10px" }}>
-        {console.log("Poll: ", poll)}
-        {console.log("User: ", currentUser)}
         <CardHeader
           avatar={<Avatar src={author.avatarURL} />}
           title={`${author.name} wants to know:`}

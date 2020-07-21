@@ -12,7 +12,7 @@ export const ALL = "ALL";
 export class PollList extends Component {
   getFilteredPolls = () => {
     const { users, pollIds, authedUser, filter } = this.props;
-    console.log(this.props);
+
     if (filter === "ALL") {
       return pollIds;
     }

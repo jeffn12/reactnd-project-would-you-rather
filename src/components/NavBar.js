@@ -6,15 +6,16 @@ import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
 export class NavBar extends Component {
   getDivider = () => {
     return (
-      <Typography variant="body1" style={{ padding: "5px" }}>
+      <Typography variant="h6" style={{ padding: "0 .5rem" }}>
         |
       </Typography>
     );
   };
 
   render() {
-    const { authedUser } = this.props;
-
+    const { authedUser, users } = this.props;
+    if (!authedUser) return <></>;
+    const user = users[authedUser];
     return (
       <AppBar color="primary" position="static">
         <Toolbar>
@@ -27,6 +28,7 @@ export class NavBar extends Component {
             >
               <Typography variant="body1">home</Typography>
               {this.getDivider()}
+
               <Typography variant="body1">leaderboard</Typography>
               {this.getDivider()}
               <Typography variant="body1">create a poll</Typography>
@@ -37,10 +39,10 @@ export class NavBar extends Component {
               alignItems="center"
               flexShrink={1}
             >
-              <Typography variant="body2">
-                {authedUser ? `welcome, ${authedUser.id}!` : "login"}
+              <Typography variant="body2" style={{ padding: ".25rem" }}>
+                welcome, {user.id}!
               </Typography>
-              {authedUser && <Avatar src={authedUser.avatarURL} />}
+              <Avatar src={user.avatarURL} />
             </Box>
           </Box>
         </Toolbar>
@@ -49,9 +51,10 @@ export class NavBar extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
+const mapStateToProps = ({ authedUser, users }) => {
   return {
-    authedUser
+    authedUser,
+    users
   };
 };
 

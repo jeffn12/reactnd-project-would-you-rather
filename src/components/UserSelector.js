@@ -18,7 +18,7 @@ export class UserSelector extends Component {
           onChange={(event) => {
             dispatch(setAuthedUser(event.target.value));
           }}
-          value={authedUser ? authedUser.id : "Choose Your Username"}
+          value={users[authedUser] ? users[authedUser].id : ""}
         >
           {userIds.map((id) => (
             <MenuItem key={id} value={id}>
