@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
 import LoginPage from "./LoginPage";
+import AnsweredPollStats from "./AnsweredPollStats";
 // Material UI Components
 import {
   Avatar,
@@ -44,12 +45,7 @@ export class Poll extends Component {
         />
         <CardContent>
           {poll[currentUser.answers[id]] ? (
-            <>
-              <Typography>{`${poll.optionOne.text} or ${poll.optionTwo.text}?`}</Typography>
-              <Typography>
-                you would rather: "{poll[currentUser.answers[id]].text}"
-              </Typography>
-            </>
+            <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
           ) : (
             <>
               <Button
