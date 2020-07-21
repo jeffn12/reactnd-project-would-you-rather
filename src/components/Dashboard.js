@@ -2,7 +2,13 @@ import React, { Component } from "react";
 // Components
 import PollList from "./PollList";
 // Material UI
-import { Paper, Tooltip, Button, ButtonGroup } from "@material-ui/core";
+import {
+  Paper,
+  Tooltip,
+  Button,
+  ButtonGroup,
+  Typography
+} from "@material-ui/core";
 // Helpers
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
@@ -57,7 +63,9 @@ export class Dashboard extends Component {
             </Button>
           </ButtonGroup>
         </Tooltip>
-        <h3 style={{ textAlign: "center" }}>Would You Rather?</h3>
+        <Typography align="center" variant="h5">
+          Would You Rather?
+        </Typography>
         <PollList filter={filter} />
       </Paper>
     );
