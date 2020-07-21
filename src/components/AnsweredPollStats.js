@@ -21,22 +21,40 @@ export class AnsweredPollStats extends Component {
 
     return (
       <CardContent>
-        <Typography
-          variant={answer === "optionOne" ? "h6" : "body2"}
-          color={answer === "optionOne" ? "primary" : "initial"}
-        >{`${poll.optionOne.text}:`}</Typography>
-        {LinearProgressWithLabel(
-          oneVotes.percent,
-          answer === "optionOne" ? "primary" : "secondary"
-        )}
-        <Typography
-          variant={answer === "optionTwo" ? "h6" : "body2"}
-          color={answer === "optionTwo" ? "primary" : "initial"}
-        >{`${poll.optionTwo.text}:`}</Typography>
-        {LinearProgressWithLabel(
-          twoVotes.percent,
-          answer === "optionTwo" ? "primary" : "secondary"
-        )}
+        <Box>
+          <Box
+            p="0.5rem"
+            border={answer === "optionOne" ? 2 : 0}
+            borderColor="primary.main"
+            borderRadius="10px"
+          >
+            <Typography
+              variant={answer === "optionOne" ? "h6" : "body2"}
+              color={answer === "optionOne" ? "primary" : "initial"}
+            >{`${poll.optionOne.text}:`}</Typography>
+            {LinearProgressWithLabel(
+              oneVotes.percent,
+              answer === "optionOne" ? "primary" : "secondary",
+              answer === "optionOne" ? 1 : 0
+            )}
+          </Box>
+          <Box
+            p="0.5rem"
+            border={answer === "optionTwo" ? 2 : 0}
+            borderColor="primary.main"
+            borderRadius="10px"
+          >
+            <Typography
+              variant={answer === "optionTwo" ? "h6" : "body2"}
+              color={answer === "optionTwo" ? "primary" : "initial"}
+            >{`${poll.optionTwo.text}:`}</Typography>
+            {LinearProgressWithLabel(
+              twoVotes.percent,
+              answer === "optionTwo" ? "primary" : "secondary",
+              answer === "optionTwo" ? 1 : 0
+            )}
+          </Box>
+        </Box>
       </CardContent>
     );
   }
