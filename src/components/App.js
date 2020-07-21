@@ -28,22 +28,17 @@ export class App extends Component {
           <Tooltip
             placement="right-start"
             title="Choose your polls"
-            open="true"
+            open={true}
             arrow
           >
-            <ButtonGroup
-              size="large"
-              variant="text"
-              fullWidth="true"
-              color="primary"
-            >
+            <ButtonGroup size="large" variant="text" fullWidth={true}>
               <Button
                 onClick={() => {
                   this.setState(() => {
                     return { filter: ANSWERED };
                   });
                 }}
-                variant={filter === ANSWERED ? "contained" : "inherit"}
+                variant={filter === ANSWERED ? "contained" : "text"}
                 disabled={filter === ANSWERED}
               >
                 answered
@@ -54,7 +49,7 @@ export class App extends Component {
                     return { filter: ALL };
                   });
                 }}
-                variant={filter === ALL ? "contained" : "inherit"}
+                variant={filter === ALL ? "contained" : "text"}
                 disabled={filter === ALL}
               >
                 all
@@ -65,7 +60,7 @@ export class App extends Component {
                     return { filter: NOT_ANSWERED };
                   });
                 }}
-                variant={filter === NOT_ANSWERED ? "contained" : "inherit"}
+                variant={filter === NOT_ANSWERED ? "contained" : "text"}
                 disabled={filter === NOT_ANSWERED}
               >
                 not answered

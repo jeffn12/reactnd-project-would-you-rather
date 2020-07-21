@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // Components
 import Poll from "./Poll";
 // Material UI Components
-import { Container } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 export const ANSWERED = "ANSWERED";
 export const NOT_ANSWERED = "NOT_ANSWERED";
@@ -20,17 +20,16 @@ export class PollList extends Component {
         ? pollIds.filter((id) => users[authedUser].answers[id])
         : pollIds.filter((id) => !users[authedUser].answers[id])
       : [];
-    console.log(pollList);
     return pollList;
   };
 
   render() {
     return (
-      <Container display="flex" flexDirection="column">
+      <Box mx="auto" width={7 / 8} display="flex" flexDirection="column">
         {this.getFilteredPolls().map((id) => {
           return <Poll key={id} id={id} />;
         })}
-      </Container>
+      </Box>
     );
   }
 }

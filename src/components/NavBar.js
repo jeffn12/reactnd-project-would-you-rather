@@ -6,7 +6,7 @@ import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
 export class NavBar extends Component {
   getDivider = () => {
     return (
-      <Typography variant="h6" style={{ padding: "5px" }}>
+      <Typography variant="body1" style={{ padding: "5px" }}>
         |
       </Typography>
     );
@@ -19,18 +19,17 @@ export class NavBar extends Component {
       <AppBar color="primary" position="static">
         <Toolbar>
           <Box display="flex" width="100%">
-            <Box display="flex" flexDirection="row" flexGrow={1}>
-              <Typography variant="h6" style={{ padding: "5px" }}>
-                home
-              </Typography>
+            <Box
+              display="flex"
+              flexDirection="row"
+              flexGrow={1}
+              alignItems="center"
+            >
+              <Typography variant="body1">home</Typography>
               {this.getDivider()}
-              <Typography variant="h6" style={{ padding: "5px" }}>
-                leaderboard
-              </Typography>
+              <Typography variant="body1">leaderboard</Typography>
               {this.getDivider()}
-              <Typography variant="h6" style={{ padding: "5px" }}>
-                create a poll
-              </Typography>
+              <Typography variant="body1">create a poll</Typography>
             </Box>
             <Box
               display="flex"
@@ -38,7 +37,7 @@ export class NavBar extends Component {
               alignItems="center"
               flexShrink={1}
             >
-              <Typography variant="p" style={{ padding: "5px" }}>
+              <Typography variant="body2">
                 {authedUser ? `welcome, ${authedUser.id}!` : "login"}
               </Typography>
               {authedUser && <Avatar src={authedUser.avatarURL} />}
