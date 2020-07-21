@@ -15,14 +15,27 @@ export class App extends Component {
   };
 
   render() {
+    const { authedUser } = this.props;
+
     return (
       <Box>
-        <LoginPage />
-        <NavBar />
-        <Dashboard />
+        {!authedUser ? (
+          <LoginPage />
+        ) : (
+          <React.Fragment>
+            <NavBar />
+            <Dashboard />
+          </React.Fragment>
+        )}
       </Box>
     );
   }
 }
 
-export default connect()(App);
+const mapStateToProps = ({ authedUser }) => {
+  return {
+    authedUser
+  };
+};
+
+export default connect(mapStateToProps)(App);
