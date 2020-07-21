@@ -1,23 +1,35 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Material UI
-import { Typography } from "@material-ui/core";
+import {
+  CardContent,
+  Typography,
+  LinearProgress,
+  Box
+} from "@material-ui/core";
 
 export class AnsweredPollStats extends Component {
   render() {
     const { id, poll, currentUser } = this.props;
 
-    const answers = {
-      one: poll.optionOne.votes.length,
-      two: poll.optionTwo.votes.length,
-      total: poll.optionOne.votes.length + poll.optionTwo.votes.length
-    };
+    const oneVotes = { raw: poll.optionOne.votes.length };
+    const twoVotes = { raw: poll.optionTwo.votes.length };
+    const total = oneVotes.raw + twoVotes.raw;
+    oneVotes.percent = (oneVotes.raw / total) * 100;
+    twoVotes.percent = (twoVotes.raw / total) * 100;
 
     return (
-      <div>
-        <Typography>{`${poll.optionOne.text} (${answers.one}/${answers.total}):`}</Typography>
-        <Typography>{`${poll.optionTwo.text} (${answers.two}/${answers.total}):`}</Typography>
-      </div>
+      <CardContent>
+        {console.log(oneVotes)}
+        <Typography
+          variant={currentUser.answers[id] === "optionOne" ? "body1" : "body2"}
+        >{`${poll.optionOne.text}:`}</Typography>
+        {LinearProgressWithLabel(oneVotes.percent)}
+        <Typography
+          variant={currentUser.answers[id] === "optionTwo" ? "body1" : "body2"}
+        >{`${poll.optionTwo.text}:`}</Typography>
+        {LinearProgressWithLabel(twoVotes.percent)}
+      </CardContent>
     );
   }
 }
@@ -31,3 +43,18 @@ const mapStateToProps = ({ polls, users, authedUser }, props) => {
 };
 
 export default connect(mapStateToProps)(AnsweredPollStats);
+
+const LinearProgressWithLabel = (value) => {
+  return (
+    <Box display="flex" alignItems="center">
+      <Box width="100%" mr={1}>
+        <LinearProgress variant="determinate" value={value} />
+      </Box>
+      <Box minWidth={35}>
+        <Typography variant="body2" color="textSecondary">
+          {Math.round(value)}%
+        </Typography>
+      </Box>
+    </Box>
+  );
+};
