@@ -33,9 +33,9 @@ export class AnsweredPollStats extends Component {
               color={answer === "optionOne" ? "primary" : "initial"}
             >{`${poll.optionOne.text}:`}</Typography>
             {LinearProgressWithLabel(
-              oneVotes.percent,
+              oneVotes,
               answer === "optionOne" ? "primary" : "secondary",
-              answer === "optionOne" ? 1 : 0
+              oneVotes
             )}
           </Box>
           <Box
@@ -49,9 +49,8 @@ export class AnsweredPollStats extends Component {
               color={answer === "optionTwo" ? "primary" : "initial"}
             >{`${poll.optionTwo.text}:`}</Typography>
             {LinearProgressWithLabel(
-              twoVotes.percent,
-              answer === "optionTwo" ? "primary" : "secondary",
-              answer === "optionTwo" ? 1 : 0
+              twoVotes,
+              answer === "optionTwo" ? "primary" : "secondary"
             )}
           </Box>
         </Box>
@@ -70,15 +69,16 @@ const mapStateToProps = ({ polls, users, authedUser }, props) => {
 
 export default connect(mapStateToProps)(AnsweredPollStats);
 
-const LinearProgressWithLabel = (value, color) => {
+const LinearProgressWithLabel = (votes, color) => {
+  const { raw, percent } = votes;
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
-        <LinearProgress variant="determinate" color={color} value={value} />
+        <LinearProgress variant="determinate" color={color} value={percent} />
       </Box>
-      <Box minWidth={35}>
-        <Typography variant="body2" color="textSecondary">
-          {Math.round(value)}%
+      <Box minWidth={50}>
+        <Typography variant="body2" color="textSecondary" align="right">
+          {`(${raw})${Math.round(percent)}% `}
         </Typography>
       </Box>
     </Box>
