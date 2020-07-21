@@ -11,10 +11,17 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
+// Helpers
+import { handleAnswerPoll } from "../actions/polls";
 
 // Poll has been answered by authedUser if:  exists
 
 export class Poll extends Component {
+  handleChange = (option) => {
+    const { dispatch, authedUser, id } = this.props;
+    dispatch(handleAnswerPoll(id, option, authedUser));
+  };
+
   render() {
     const { polls, users, id, authedUser } = this.props;
     const author = users[polls[id].author];
@@ -37,11 +44,21 @@ export class Poll extends Component {
               </>
             ) : (
               <>
-                <Button fullWidth={true} variant="outlined" color="primary">
+                <Button
+                  fullWidth={true}
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => this.handleChange(poll.optionOne.text)}
+                >
                   {poll.optionOne.text}
                 </Button>
                 <Typography align="center">or...</Typography>
-                <Button fullWidth={true} variant="outlined" color="primary">
+                <Button
+                  fullWidth={true}
+                  variant="outlined"
+                  color="primary"
+                  onClick={() => this.handleChange(poll.optionOne.text)}
+                >
                   {poll.optionTwo.text}
                 </Button>
               </>

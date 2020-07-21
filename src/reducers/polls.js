@@ -5,14 +5,21 @@ export const pollsReducer = (state = {}, action) => {
     case GET_POLLS:
       return { ...state, ...action.polls };
     case ANSWER_POLL:
+      console.log(action);
+
       return {
         ...state,
-        [action.authedUser]: {
-          ...state.users[action.authedUser.id],
-          answers: {
-            [action.pollId]: action.option
+        users: {
+          ...state.users,
+          [action.authedUser.id]: {
+            ...[action.authedUser.id],
+            answers: {
+              [action.pollId]: action.option
+            }
           }
-        }
+        },
+        ...state.authedUser,
+        ...state.polls
       };
     default:
       return state;

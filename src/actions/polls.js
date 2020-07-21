@@ -1,3 +1,5 @@
+import { _saveQuestionAnswer } from "../utils/_DATA";
+
 export const GET_POLLS = "GET_POLLS";
 export const ANSWER_POLL = "ANSWER_POLL";
 
@@ -14,5 +16,15 @@ export const answerPoll = (pollId, option, authedUser) => {
     pollId,
     option,
     authedUser
+  };
+};
+
+export const handleAnswerPoll = (pollId, option, authedUser) => {
+  return (dispatch) => {
+    dispatch(answerPoll(pollId, option, authedUser));
+
+    _saveQuestionAnswer(pollId, option, authedUser.id).catch((err) => {
+      console.log("there was an error");
+    });
   };
 };
