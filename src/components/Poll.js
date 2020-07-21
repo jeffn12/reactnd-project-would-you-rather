@@ -37,7 +37,6 @@ export class Poll extends Component {
 
     return (
       <Card style={{ margin: "10px" }}>
-        {console.log(poll)}
         <CardHeader
           avatar={<Avatar src={currentUser.avatarURL} />}
           title={`${currentUser.name} wants to know:`}

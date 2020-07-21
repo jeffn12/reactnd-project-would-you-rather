@@ -6,7 +6,6 @@ export const pollsReducer = (state = {}, action) => {
     case GET_POLLS:
       return { ...state, ...action.polls };
     case ANSWER_POLL:
-      console.log(action);
       return {
         ...state,
         [action.pollId]: {

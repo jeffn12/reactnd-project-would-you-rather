@@ -29,9 +29,11 @@ export const answerPoll = (pollId, option, authedUser) => {
 export const handleAnswerPoll = (pollId, option, authedUser) => {
   return (dispatch) => {
     dispatch(answerPoll(pollId, option, authedUser));
-
-    _saveQuestionAnswer(pollId, option, authedUser.id).catch((err) => {
-      console.log("there was an error");
-    });
+    console.log("authed user in handler: ", authedUser);
+    _saveQuestionAnswer({ authedUser, qid: pollId, answer: option }).catch(
+      (err) => {
+        console.log("there was an error");
+      }
+    );
   };
 };
