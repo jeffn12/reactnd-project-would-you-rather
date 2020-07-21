@@ -12,7 +12,7 @@ import {
   Button
 } from "@material-ui/core";
 // Helpers
-import { handleAnswerPoll } from "../actions/polls";
+import { handleAnswerPoll } from "../actions/shared";
 
 export class Poll extends Component {
   handleChange = (option) => {
@@ -32,15 +32,15 @@ export class Poll extends Component {
 
     if (!authedUser) return <LoginPage />;
 
-    const author = users[polls[id].author];
     const poll = polls[id];
     const currentUser = users[authedUser];
 
     return (
       <Card style={{ margin: "10px" }}>
+        {console.log(poll)}
         <CardHeader
-          avatar={<Avatar src={author.avatarURL} />}
-          title={`${author.name} wants to know:`}
+          avatar={<Avatar src={currentUser.avatarURL} />}
+          title={`${currentUser.name} wants to know:`}
           subheader="would you rather..."
         />
         <CardContent>
@@ -57,7 +57,7 @@ export class Poll extends Component {
                 fullWidth={true}
                 variant="outlined"
                 color="primary"
-                onClick={() => this.handleChange(poll.optionOne.text)}
+                onClick={() => this.handleChange("optionOne")}
               >
                 {poll.optionOne.text}
               </Button>
@@ -66,7 +66,7 @@ export class Poll extends Component {
                 fullWidth={true}
                 variant="outlined"
                 color="primary"
-                onClick={() => this.handleChange(poll.optionOne.text)}
+                onClick={() => this.handleChange("optionTwo")}
               >
                 {poll.optionTwo.text}
               </Button>

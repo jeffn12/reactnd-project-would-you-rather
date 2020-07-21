@@ -1,4 +1,5 @@
-import { GET_POLLS, ANSWER_POLL } from "../actions/polls";
+import { GET_POLLS } from "../actions/polls";
+import { ANSWER_POLL } from "../actions/shared";
 
 export const pollsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -6,20 +7,14 @@ export const pollsReducer = (state = {}, action) => {
       return { ...state, ...action.polls };
     case ANSWER_POLL:
       console.log(action);
-
       return {
         ...state,
-        users: {
-          ...state.users,
-          [action.authedUser.id]: {
-            ...[action.authedUser.id],
-            answers: {
-              [action.pollId]: action.option
-            }
-          }
-        },
-        ...state.authedUser,
-        ...state.polls
+        [action.pollId]: {
+          ...state[action.pollId],
+          optionOne: state[action.pollId][action.option].votes.concat([
+            action.authedUser
+          ])
+        }
       };
     default:
       return state;
