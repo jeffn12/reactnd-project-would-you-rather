@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// Components
 // Actions
 import { setAuthedUser } from "../actions/authedUser";
 // Material UI
@@ -19,7 +18,7 @@ export class UserSelector extends Component {
           onChange={(event) => {
             dispatch(setAuthedUser(users[event.target.value]));
           }}
-          value={authedUser ? authedUser : ""}
+          value={authedUser ? authedUser.id : "Choose Your Username"}
         >
           {userIds.map((id) => (
             <MenuItem key={id} value={id}>
