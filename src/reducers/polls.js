@@ -10,9 +10,12 @@ export const pollsReducer = (state = {}, action) => {
         ...state,
         [action.pollId]: {
           ...state[action.pollId],
-          optionOne: state[action.pollId][action.option].votes.concat([
-            action.authedUser
-          ])
+          [action.option]: {
+            ...state[action.pollId][action.option],
+            votes: state[action.pollId][action.option].votes.concat([
+              action.authedUser
+            ])
+          }
         }
       };
     default:
