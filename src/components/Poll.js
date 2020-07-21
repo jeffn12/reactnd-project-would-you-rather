@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
+import LoginPage from "./LoginPage";
 // Material UI Components
 import {
   Avatar,
@@ -10,11 +11,14 @@ import {
   Typography
 } from "@material-ui/core";
 
+// Poll has been answered by authedUser if:  exists
+
 export class Poll extends Component {
   render() {
-    const { polls, users, id } = this.props;
+    const { polls, users, id, authedUser } = this.props;
     const author = users[polls[id].author];
-    return polls[id] ? (
+    const poll = polls[id] && polls[id];
+    return poll ? (
       <Card style={{ margin: "10px" }}>
         <CardHeader
           avatar={<Avatar src={author.avatarURL} />}
@@ -22,7 +26,15 @@ export class Poll extends Component {
           subheader="would you rather..."
         />
         <CardContent>
-          <Typography>{`${polls[id].optionOne.text} or ${polls[id].optionTwo.text}?`}</Typography>
+          {authedUser ? (
+            authedUser.answers[id] ? (
+              <Typography>{poll[authedUser.answers[id]].text}</Typography>
+            ) : (
+              <Typography>{`${poll.optionOne.text} or ${poll.optionTwo.text}?`}</Typography>
+            )
+          ) : (
+            <LoginPage />
+          )}
         </CardContent>
       </Card>
     ) : (
@@ -33,8 +45,9 @@ export class Poll extends Component {
   }
 }
 
-const mapStateToProps = ({ polls, users }, { id }) => {
+const mapStateToProps = ({ authedUser, polls, users }, { id }) => {
   return {
+    authedUser,
     polls,
     users,
     id
