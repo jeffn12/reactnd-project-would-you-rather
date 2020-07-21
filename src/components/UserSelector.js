@@ -1,18 +1,17 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
-
-// Material UI
-import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 // Actions
 import { setAuthedUser } from "../actions/authedUser";
+// Material UI
+import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
 
 export class UserSelector extends Component {
   render() {
     const { dispatch, userIds, users, authedUser } = this.props;
 
     return (
-      <FormControl>
+      <FormControl fullWidth={true}>
         <InputLabel id="user-select-label">Choose Your Username</InputLabel>
         <Select
           labelId="user-select-label"
