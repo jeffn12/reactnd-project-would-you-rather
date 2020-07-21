@@ -12,6 +12,7 @@ export class AnsweredPollStats extends Component {
   render() {
     const { id, poll, currentUser } = this.props;
 
+    const answer = currentUser.answers[id];
     const oneVotes = { raw: poll.optionOne.votes.length };
     const twoVotes = { raw: poll.optionTwo.votes.length };
     const total = oneVotes.raw + twoVotes.raw;
@@ -20,15 +21,22 @@ export class AnsweredPollStats extends Component {
 
     return (
       <CardContent>
-        {console.log(oneVotes)}
         <Typography
-          variant={currentUser.answers[id] === "optionOne" ? "body1" : "body2"}
+          variant={answer === "optionOne" ? "h6" : "body2"}
+          color={answer === "optionOne" ? "primary" : "initial"}
         >{`${poll.optionOne.text}:`}</Typography>
-        {LinearProgressWithLabel(oneVotes.percent)}
+        {LinearProgressWithLabel(
+          oneVotes.percent,
+          answer === "optionOne" ? "primary" : "secondary"
+        )}
         <Typography
-          variant={currentUser.answers[id] === "optionTwo" ? "body1" : "body2"}
+          variant={answer === "optionTwo" ? "h6" : "body2"}
+          color={answer === "optionTwo" ? "primary" : "initial"}
         >{`${poll.optionTwo.text}:`}</Typography>
-        {LinearProgressWithLabel(twoVotes.percent)}
+        {LinearProgressWithLabel(
+          twoVotes.percent,
+          answer === "optionTwo" ? "primary" : "secondary"
+        )}
       </CardContent>
     );
   }
@@ -44,11 +52,11 @@ const mapStateToProps = ({ polls, users, authedUser }, props) => {
 
 export default connect(mapStateToProps)(AnsweredPollStats);
 
-const LinearProgressWithLabel = (value) => {
+const LinearProgressWithLabel = (value, color) => {
   return (
     <Box display="flex" alignItems="center">
       <Box width="100%" mr={1}>
-        <LinearProgress variant="determinate" value={value} />
+        <LinearProgress variant="determinate" color={color} value={value} />
       </Box>
       <Box minWidth={35}>
         <Typography variant="body2" color="textSecondary">
