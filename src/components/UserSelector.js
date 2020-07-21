@@ -16,7 +16,7 @@ export class UserSelector extends Component {
           labelId="user-select-label"
           id="user-select"
           onChange={(event) => {
-            dispatch(setAuthedUser(users[event.target.value]));
+            dispatch(setAuthedUser(event.target.value));
           }}
           value={authedUser ? authedUser.id : "Choose Your Username"}
         >

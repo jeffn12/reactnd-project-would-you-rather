@@ -12,6 +12,7 @@ export const ALL = "ALL";
 export class PollList extends Component {
   getFilteredPolls = () => {
     const { users, pollIds, authedUser, filter } = this.props;
+    console.log(this.props);
     if (filter === "ALL") {
       return pollIds;
     }
@@ -40,7 +41,7 @@ const mapStateToProps = ({ polls, users, authedUser }, { filter }) => {
       (a, b) => polls[b].timestamp - polls[a].timestamp
     ),
     users,
-    authedUser: authedUser ? authedUser.id : authedUser,
+    authedUser,
     filter: filter || false
   };
 };
