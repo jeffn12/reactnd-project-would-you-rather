@@ -8,7 +8,8 @@ import {
   Card,
   CardHeader,
   CardContent,
-  Typography
+  Typography,
+  Button
 } from "@material-ui/core";
 
 // Poll has been answered by authedUser if:  exists
@@ -28,9 +29,22 @@ export class Poll extends Component {
         <CardContent>
           {authedUser ? (
             authedUser.answers[id] ? (
-              <Typography>{poll[authedUser.answers[id]].text}</Typography>
+              <>
+                <Typography>{`${poll.optionOne.text} or ${poll.optionTwo.text}?`}</Typography>
+                <Typography>
+                  you would rather: "{poll[authedUser.answers[id]].text}"
+                </Typography>
+              </>
             ) : (
-              <Typography>{`${poll.optionOne.text} or ${poll.optionTwo.text}?`}</Typography>
+              <>
+                <Button fullWidth={true} variant="outlined" color="primary">
+                  {poll.optionOne.text}
+                </Button>
+                <Typography align="center">or...</Typography>
+                <Button fullWidth={true} variant="outlined" color="primary">
+                  {poll.optionTwo.text}
+                </Button>
+              </>
             )
           ) : (
             <LoginPage />
