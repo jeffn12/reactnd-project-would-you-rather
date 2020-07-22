@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// Components
+import { LeaderBoardEntry } from "./LeaderBoardEntry";
 // Material UI
 import { Box, Typography } from "@material-ui/core";
 
@@ -10,7 +12,7 @@ export class Leaderboard extends Component {
       <Box>
         <Typography variant="h6">leaderboard</Typography>
         {userIds.map((id) => (
-          <Typography key={id}>{users[id].name}</Typography>
+          <LeaderBoardEntry key={id} user={users[id]} />
         ))}
       </Box>
     );
