@@ -7,23 +7,35 @@ import { Box, Typography } from "@material-ui/core";
 
 export class Leaderboard extends Component {
   render() {
-    const { users, userIds } = this.props;
+    const { users, userIds, totalQuestions, totalAnswers } = this.props;
+
     return (
       <Box>
         <Typography variant="h6">leaderboard</Typography>
         {userIds.map((id) => (
-          <LeaderBoardEntry key={id} user={users[id]} />
+          <LeaderBoardEntry
+            key={id}
+            user={users[id]}
+            totals={{ totalQuestions, totalAnswers }}
+          />
         ))}
       </Box>
     );
   }
 }
 
-const mapStateToProps = ({ users, authedUser }) => {
+const mapStateToProps = ({ users }) => {
   return {
     userIds: Object.keys(users),
     users,
-    authedUser
+    totalQuestions: Object.keys(users).reduce(
+      (acc, id) => acc + users[id].questions.length,
+      0
+    ),
+    totalAnswers: Object.keys(users).reduce(
+      (acc, id) => acc + Object.keys(users[id].answers).length,
+      0
+    )
   };
 };
 
