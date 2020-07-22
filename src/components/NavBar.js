@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Routing
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 // Material UI Components
 import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
 
@@ -29,15 +29,19 @@ export class NavBar extends Component {
               alignItems="center"
             >
               <Typography variant="body1">
-                <Link to="/">home</Link>
+                <NavLink to="/" exact>
+                  home
+                </NavLink>
               </Typography>
               {this.getDivider()}
               <Typography variant="body1">
-                <Link to="/leaderboard">leaderboard</Link>
+                <NavLink to="/leaderboard">leaderboard</NavLink>
               </Typography>
               {this.getDivider()}
               <Typography variant="body1">
-                <Link to="/">create a poll</Link>
+                <NavLink to={() => <h1>in progress...</h1>}>
+                  create a poll
+                </NavLink>
               </Typography>
             </Box>
             <Box
@@ -66,3 +70,11 @@ const mapStateToProps = ({ authedUser, users }) => {
 };
 
 export default connect(mapStateToProps)(NavBar);
+
+NavLink.defaultProps = {
+  style: { textDecoration: "none", color: "white" },
+  activeStyle: {
+    textDecoration: "underline",
+    fontWeight: "bold"
+  }
+};
