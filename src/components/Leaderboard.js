@@ -5,6 +5,8 @@ import { LeaderBoardEntry } from "./LeaderBoardEntry";
 // Material UI
 import { Box, Typography } from "@material-ui/core";
 
+// TODO: sort list of userIds by asked + answered Qs
+
 export class Leaderboard extends Component {
   render() {
     const { users, userIds, totalQuestions, totalAnswers } = this.props;
@@ -26,7 +28,12 @@ export class Leaderboard extends Component {
 
 const mapStateToProps = ({ users }) => {
   return {
-    userIds: Object.keys(users),
+    userIds: Object.keys(users).sort(
+      (a, b) =>
+        users[b].questions.length +
+        Object.keys(users[b].answers).length -
+        (users[a].questions.length + Object.keys(users[a].answers).length)
+    ),
     users,
     totalQuestions: Object.keys(users).reduce(
       (acc, id) => acc + users[id].questions.length,
@@ -40,3 +47,8 @@ const mapStateToProps = ({ users }) => {
 };
 
 export default connect(mapStateToProps)(Leaderboard);
+
+/**
+ * sort by sum of  asked + answered
+ *     users[id].questions.length + Object.keys(users[id].answers).length)
+ */
