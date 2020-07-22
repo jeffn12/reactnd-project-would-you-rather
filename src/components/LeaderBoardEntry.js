@@ -7,6 +7,7 @@ import {
   Typography,
   CircularProgress
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 
 export const LeaderBoardEntry = (props) => {
   const { user, totals } = props;
@@ -15,10 +16,17 @@ export const LeaderBoardEntry = (props) => {
 
   return (
     <Box my="1rem" width={1} display="flex" alignItems="center">
-      <Avatar src={avatarURL} alt={"avatar of " + id} />
-      <Box minWidth={250} mx="0.5rem" display="flex" alignItems="center">
-        <Typography variant="body1">{name}</Typography>
-        <Typography variant="subtitle2">({id})</Typography>
+      <StyledAvatar src={avatarURL} alt={"avatar of " + id} />
+      <Box
+        minWidth={250}
+        mx="0.5rem"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent="space-between"
+      >
+        <Typography variant="h6">{name}</Typography>
+        <Typography variant="body2">({id})</Typography>
       </Box>
       <Box
         mx="0.5rem"
@@ -36,7 +44,7 @@ export const LeaderBoardEntry = (props) => {
             )}
           </Container>
           <Container>
-            <Typography variant="subtitle2" flexBasis="50%">
+            <Typography variant="subtitle2">
               {Object.keys(user.answers).length}/{totalAnswers}
             </Typography>
           </Container>
@@ -55,7 +63,7 @@ export const LeaderBoardEntry = (props) => {
             {CircularProgressWithLabel(user.questions.length, totalQuestions)}
           </Container>
           <Container>
-            <Typography variant="subtitle2" flexBasis="50%">
+            <Typography variant="subtitle2">
               {user.questions.length}/{totalQuestions}
             </Typography>
           </Container>
@@ -66,6 +74,13 @@ export const LeaderBoardEntry = (props) => {
 };
 
 export default LeaderBoardEntry;
+
+const StyledAvatar = withStyles({
+  root: {
+    width: "50px",
+    height: "50px"
+  }
+})(Avatar);
 
 const CircularProgressWithLabel = (value, total) => {
   return (
