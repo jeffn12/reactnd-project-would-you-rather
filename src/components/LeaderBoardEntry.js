@@ -3,9 +3,9 @@ import React from "react";
 import { Avatar, Box, Typography } from "@material-ui/core";
 
 export const LeaderBoardEntry = (props) => {
-  const { user, stats } = props;
+  const { user, totals } = props;
   const { id, name, avatarURL } = user;
-  const { totalAnswers, totalQuestions } = stats;
+  const { totalAnswers, totalQuestions } = totals;
 
   return (
     <Box my="1rem" width={1} display="flex" alignItems="center">
@@ -22,7 +22,7 @@ export const LeaderBoardEntry = (props) => {
       >
         <Typography variant="body1">Number of Questions Answered</Typography>
         <Typography variant="subtitle2" align="center">
-          {Object.keys(user.answers).length}
+          {Object.keys(user.answers).length}/{totalAnswers}
         </Typography>
       </Box>
       <Box
@@ -33,7 +33,7 @@ export const LeaderBoardEntry = (props) => {
       >
         <Typography variant="body1">Number of Questions Asked</Typography>
         <Typography variant="subtitle2" align="center">
-          {user.questions.length}
+          {user.questions.length}/{totalQuestions}
         </Typography>
       </Box>
     </Box>
