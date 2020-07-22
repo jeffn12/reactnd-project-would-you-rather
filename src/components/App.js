@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// Routing
+import { Route } from "react-router-dom";
 // Components
 import NavBar from "./NavBar";
 import LoginPage from "./LoginPage";
@@ -19,17 +21,17 @@ export class App extends Component {
     const { authedUser } = this.props;
 
     return (
-      <Leaderboard />
-      /*       <Box>
+      <Box>
         {!authedUser ? (
           <LoginPage />
         ) : (
           <React.Fragment>
             <NavBar />
-            <Dashboard />
+            <Route exact path="/" component={Dashboard} />
+            <Route path="/leaderboard" component={Leaderboard} />
           </React.Fragment>
         )}
-      </Box> */
+      </Box>
     );
   }
 }

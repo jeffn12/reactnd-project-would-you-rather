@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// Routing
+import { Link } from "react-router-dom";
 // Material UI Components
 import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
 
@@ -26,12 +28,17 @@ export class NavBar extends Component {
               flexGrow={1}
               alignItems="center"
             >
-              <Typography variant="body1">home</Typography>
+              <Typography variant="body1">
+                <Link to="/">home</Link>
+              </Typography>
               {this.getDivider()}
-
-              <Typography variant="body1">leaderboard</Typography>
+              <Typography variant="body1">
+                <Link to="/leaderboard">leaderboard</Link>
+              </Typography>
               {this.getDivider()}
-              <Typography variant="body1">create a poll</Typography>
+              <Typography variant="body1">
+                <Link to="/">create a poll</Link>
+              </Typography>
             </Box>
             <Box
               display="flex"
