@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import NavBar from "./NavBar";
 import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
+import Leaderboard from "./Leaderboard";
 // Material UI Components
 import { Box } from "@material-ui/core";
 // Helpers
@@ -18,7 +19,8 @@ export class App extends Component {
     const { authedUser } = this.props;
 
     return (
-      <Box>
+      <Leaderboard />
+      /*       <Box>
         {!authedUser ? (
           <LoginPage />
         ) : (
@@ -27,7 +29,7 @@ export class App extends Component {
             <Dashboard />
           </React.Fragment>
         )}
-      </Box>
+      </Box> */
     );
   }
 }
