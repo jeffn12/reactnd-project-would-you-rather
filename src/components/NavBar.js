@@ -39,9 +39,7 @@ export class NavBar extends Component {
               </Typography>
               {this.getDivider()}
               <Typography variant="body1">
-                <NavLink to={() => <h1>in progress...</h1>}>
-                  create a poll
-                </NavLink>
+                <NavLink to="/add">create a poll</NavLink>
               </Typography>
             </Box>
             <Box
