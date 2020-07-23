@@ -13,11 +13,11 @@ export class AnsweredPollStats extends Component {
     const { id, poll, currentUser } = this.props;
 
     const answer = currentUser.answers[id];
-    const oneVotes = { raw: poll.optionOne.votes.length };
-    const twoVotes = { raw: poll.optionTwo.votes.length };
-    const total = oneVotes.raw + twoVotes.raw;
-    oneVotes.percent = (oneVotes.raw / total) * 100;
-    twoVotes.percent = (twoVotes.raw / total) * 100;
+    const optionOneVotes = { raw: poll.optionOne.votes.length };
+    const optionTwoVotes = { raw: poll.optionTwo.votes.length };
+    const total = optionOneVotes.raw + optionTwoVotes.raw;
+    optionOneVotes.percent = (optionOneVotes.raw / total) * 100;
+    optionTwoVotes.percent = (optionTwoVotes.raw / total) * 100;
 
     return (
       <CardContent>
@@ -33,9 +33,8 @@ export class AnsweredPollStats extends Component {
               color={answer === "optionOne" ? "primary" : "initial"}
             >{`${poll.optionOne.text}:`}</Typography>
             {LinearProgressWithLabel(
-              oneVotes,
-              answer === "optionOne" ? "primary" : "secondary",
-              oneVotes
+              optionOneVotes,
+              answer === "optionOne" ? "primary" : "secondary"
             )}
           </Box>
           <Box
@@ -49,7 +48,7 @@ export class AnsweredPollStats extends Component {
               color={answer === "optionTwo" ? "primary" : "initial"}
             >{`${poll.optionTwo.text}:`}</Typography>
             {LinearProgressWithLabel(
-              twoVotes,
+              optionTwoVotes,
               answer === "optionTwo" ? "primary" : "secondary"
             )}
           </Box>
