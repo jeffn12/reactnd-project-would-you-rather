@@ -34,13 +34,14 @@ export class Poll extends Component {
     if (!authedUser) return <LoginPage />;
 
     const poll = polls[id];
+    const author = users[poll.author];
     const currentUser = users[authedUser];
 
     return (
       <Card style={{ margin: "10px" }}>
         <CardHeader
-          avatar={<Avatar src={currentUser.avatarURL} />}
-          title={`${currentUser.name} wants to know:`}
+          avatar={<Avatar src={author.avatarURL} />}
+          title={`${author.name} wants to know:`}
           subheader="would you rather..."
         />
         <CardContent>
