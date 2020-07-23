@@ -7,7 +7,7 @@ import { Box, Typography } from "@material-ui/core";
 
 export class Leaderboard extends Component {
   render() {
-    const { users, userIds, totalQuestions, totalAnswers } = this.props;
+    const { users, userIds, totalQuestions } = this.props;
 
     return (
       <Box>
@@ -16,7 +16,7 @@ export class Leaderboard extends Component {
           <LeaderBoardEntry
             key={id}
             user={users[id]}
-            totals={{ totalQuestions, totalAnswers }}
+            totals={{ totalQuestions }}
           />
         ))}
       </Box>
@@ -24,7 +24,7 @@ export class Leaderboard extends Component {
   }
 }
 
-const mapStateToProps = ({ users }) => {
+const mapStateToProps = ({ users, polls }) => {
   return {
     userIds: Object.keys(users).sort(
       (a, b) =>
@@ -33,14 +33,7 @@ const mapStateToProps = ({ users }) => {
         (users[a].questions.length + Object.keys(users[a].answers).length)
     ),
     users,
-    totalQuestions: Object.keys(users).reduce(
-      (acc, id) => acc + users[id].questions.length,
-      0
-    ),
-    totalAnswers: Object.keys(users).reduce(
-      (acc, id) => acc + Object.keys(users[id].answers).length,
-      0
-    )
+    totalQuestions: Object.keys(polls).length
   };
 };
 

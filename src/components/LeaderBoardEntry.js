@@ -40,12 +40,12 @@ export const LeaderBoardEntry = (props) => {
           <Container>
             {CircularProgressWithLabel(
               Object.keys(user.answers).length,
-              totalAnswers
+              totalQuestions
             )}
           </Container>
           <Container>
             <Typography variant="subtitle2">
-              {Object.keys(user.answers).length}/{totalAnswers}
+              {Object.keys(user.answers).length}/{totalQuestions}
             </Typography>
           </Container>
         </Box>
