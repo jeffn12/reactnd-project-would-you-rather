@@ -1,5 +1,5 @@
 import { GET_POLLS } from "../actions/polls";
-import { ANSWER_POLL } from "../actions/shared";
+import { ANSWER_POLL, ADD_POLL } from "../actions/shared";
 
 export const pollsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -17,6 +17,11 @@ export const pollsReducer = (state = {}, action) => {
             ])
           }
         }
+      };
+    case ADD_POLL:
+      return {
+        ...state,
+        [action.question.id]: action.question
       };
     default:
       return state;

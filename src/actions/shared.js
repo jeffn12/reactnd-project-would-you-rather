@@ -38,10 +38,11 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
 // question = { author, optionOneText, optionTwoText }
 export const handleAddPoll = (author, optionOneText, optionTwoText) => {
   return (dispatch) => {
-    dispatch(addPoll(optionOneText, optionTwoText, author));
-    _saveQuestion({ author, optionOneText, optionTwoText }).catch((err) =>
-      console.log("there was an error")
-    );
+    _saveQuestion({ author, optionOneText, optionTwoText })
+      .then((question) => {
+        dispatch(addPoll(question));
+      })
+      .catch((err) => console.log("there was an error"));
   };
 };
 
@@ -55,11 +56,9 @@ const answerPoll = (pollId, option, authedUser) => {
   };
 };
 
-const addPoll = (optionOne, optionTwo, authedUser) => {
+const addPoll = (question) => {
   return {
     type: ADD_POLL,
-    optionOne,
-    optionTwo,
-    authedUser
+    question
   };
 };
