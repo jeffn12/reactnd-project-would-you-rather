@@ -10,7 +10,7 @@ export class Leaderboard extends Component {
     const { users, userIds, totalQuestions } = this.props;
 
     return (
-      <Box>
+      <Box width={"96%"}>
         <Typography variant="h6">leaderboard</Typography>
         {userIds.map((id) => (
           <LeaderBoardEntry

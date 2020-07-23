@@ -12,10 +12,16 @@ import { withStyles } from "@material-ui/styles";
 export const LeaderBoardEntry = (props) => {
   const { user, totals } = props;
   const { id, name, avatarURL } = user;
-  const { totalAnswers, totalQuestions } = totals;
+  const { totalQuestions } = totals;
 
   return (
-    <Box my="1rem" width={1} display="flex" alignItems="center">
+    <Box
+      p="1rem"
+      width={1}
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+    >
       <StyledAvatar src={avatarURL} alt={"avatar of " + id} />
       <Box
         minWidth={250}
