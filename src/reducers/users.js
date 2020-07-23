@@ -20,7 +20,10 @@ export const usersReducer = (state = {}, action) => {
       return {
         ...state,
         [action.question.author]: {
-          questions: [...[action.question.author].questions, action.question.id]
+          ...state[action.question.author],
+          questions: state[action.question.author].questions.concat([
+            action.question.id
+          ])
         }
       };
     default:
