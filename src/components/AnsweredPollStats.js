@@ -17,7 +17,9 @@ export class AnsweredPollStats extends Component {
     const optionTwoVotes = { raw: poll.optionTwo.votes.length };
     const total = optionOneVotes.raw + optionTwoVotes.raw;
     optionOneVotes.percent = (optionOneVotes.raw / total) * 100;
+    optionOneVotes.voters = poll.optionOne.votes;
     optionTwoVotes.percent = (optionTwoVotes.raw / total) * 100;
+    optionTwoVotes.voters = poll.optionOne.votes;
 
     return (
       <CardContent>

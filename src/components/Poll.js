@@ -44,11 +44,12 @@ export class Poll extends Component {
           title={`${author.name} wants to know:`}
           subheader="would you rather..."
         />
-        <CardContent>
-          {poll[currentUser.answers[id]] ? (
-            <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
-          ) : (
-            <>
+
+        {poll[currentUser.answers[id]] ? (
+          <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
+        ) : (
+          <>
+            <CardContent>
               <Button
                 fullWidth={true}
                 variant="outlined"
@@ -66,9 +67,9 @@ export class Poll extends Component {
               >
                 {poll.optionTwo.text}
               </Button>
-            </>
-          )}
-        </CardContent>
+            </CardContent>
+          </>
+        )}
       </Card>
     );
   }
