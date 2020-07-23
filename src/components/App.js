@@ -8,6 +8,7 @@ import LoginPage from "./LoginPage";
 import Dashboard from "./Dashboard";
 import Leaderboard from "./Leaderboard";
 import AddPoll from "./AddPoll";
+import Poll from "./Poll";
 // Material UI Components
 import { Box } from "@material-ui/core";
 // Helpers
@@ -31,6 +32,7 @@ export class App extends Component {
             <Route exact path="/" component={Dashboard} />
             <Route path="/add" component={AddPoll} />
             <Route path="/leaderboard" component={Leaderboard} />
+            <Route path="/questions/:id" component={Poll} />
           </React.Fragment>
         )}
       </Box>

@@ -28,7 +28,7 @@ export class PollList extends Component {
     return (
       <Box mx="auto" width={7 / 8} display="flex" flexDirection="column">
         {this.getFilteredPolls().map((id) => {
-          return <Poll key={id} id={id} />;
+          return <Poll key={id} match={{ params: { id } }} />;
         })}
       </Box>
     );

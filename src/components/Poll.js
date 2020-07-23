@@ -75,7 +75,8 @@ export class Poll extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser, polls, users }, { id }) => {
+const mapStateToProps = ({ authedUser, polls, users }, props) => {
+  const { id } = props.match.params;
   return {
     authedUser,
     polls,
