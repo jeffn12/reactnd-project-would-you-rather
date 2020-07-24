@@ -21,7 +21,12 @@ export class Dashboard extends Component {
   render() {
     const { filter } = this.state;
     return (
-      <Box m={"15px"} display="flex" flexDirection="column" alignItems="center">
+      <Box
+        m={"0.75rem"}
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+      >
         <Typography align="center" variant="h5">
           Would You Rather?
         </Typography>
