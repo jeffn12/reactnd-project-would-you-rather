@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
-import LoginPage from "./LoginPage";
 import AnsweredPollStats from "./AnsweredPollStats";
 // Routing
 import { Link, withRouter } from "react-router-dom";
@@ -22,7 +21,8 @@ export class Poll extends Component {
    * Handle poll submission by dispatching the handleAnswerPoll event with the poll id, current user, and the selected option
    * @param {String} option
    */
-  handleChange = (option) => {
+  handleChange = (option, event) => {
+    event.preventDefault();
     const { dispatch, authedUser, id } = this.props;
     dispatch(handleAnswerPoll(id, option, authedUser));
   };
@@ -30,12 +30,8 @@ export class Poll extends Component {
   render() {
     const { polls, users, id, authedUser } = this.props;
 
-    // Ask user to login before showing the poll if there no authed user is set
-    if (!authedUser) return <LoginPage />;
-
     // If the poll does not exist, show a "404: Not Found" error
     if (!polls[id]) {
-      console.log(this.props);
       return (
         <Card>
           <CardContent>404: Poll Not Found</CardContent>
@@ -50,12 +46,8 @@ export class Poll extends Component {
 
     return (
       <Link
-        to={() => {
-          return hasAnswered ? `/questions/${id}` : "";
-        }}
-        replace={
-          !hasAnswered || this.props.location.pathname === `/questions/${id}`
-        }
+        to={() => `/questions/${id}`}
+        replace={this.props.location.pathname === `/questions/${id}`}
         style={{ textDecoration: "none", cursor: "default" }}
       >
         <Card style={{ margin: "0.5rem" }}>
@@ -63,17 +55,20 @@ export class Poll extends Component {
             avatar={<Avatar src={author.avatarURL} />}
             title={`${author.name} wants to know:`}
             subheader="would you rather..."
-          />
+          >
+            {console.log(this.props.location)}
+          </CardHeader>
           {hasAnswered ? (
             <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
           ) : (
             // If the user has not answered the poll, render both options
             <CardContent>
+              {console.log("author: ", author)}
               <Button
                 fullWidth={true}
                 variant="outlined"
                 color="primary"
-                onClick={() => this.handleChange("optionOne")}
+                onClick={(e) => this.handleChange("optionOne", e)}
                 children={poll.optionOne.text}
               />
               <Typography align="center">or...</Typography>
@@ -81,7 +76,7 @@ export class Poll extends Component {
                 fullWidth={true}
                 variant="outlined"
                 color="primary"
-                onClick={() => this.handleChange("optionTwo")}
+                onClick={(e) => this.handleChange("optionTwo", e)}
                 children={poll.optionTwo.text}
               />
             </CardContent>
