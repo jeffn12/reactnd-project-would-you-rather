@@ -10,7 +10,7 @@ import {
   Typography,
   CardHeader
 } from "@material-ui/core";
-// Helpers
+// Constants
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
 export class Dashboard extends Component {
@@ -27,11 +27,8 @@ export class Dashboard extends Component {
         flexDirection="column"
         alignItems="center"
       >
-        <Typography align="center" variant="h5">
-          Would You Rather?
-        </Typography>
-
-        <Box width={7 / 8}>
+        <Typography align="center" variant="h5" children="Would You Rather?" />
+        <Box width={1}>
           <Card>
             <CardHeader subheader="which questions would you like to see?" />
             <ButtonGroup size="large" variant="text" fullWidth={true}>
@@ -43,9 +40,8 @@ export class Dashboard extends Component {
                 }}
                 variant={filter === ANSWERED ? "contained" : "text"}
                 disabled={filter === ANSWERED}
-              >
-                answered
-              </Button>
+                children="answered"
+              />
               <Button
                 onClick={() => {
                   this.setState(() => {
@@ -54,9 +50,8 @@ export class Dashboard extends Component {
                 }}
                 variant={filter === ALL ? "contained" : "text"}
                 disabled={filter === ALL}
-              >
-                all
-              </Button>
+                children="all"
+              />
               <Button
                 onClick={() => {
                   this.setState(() => {
@@ -65,11 +60,9 @@ export class Dashboard extends Component {
                 }}
                 variant={filter === NOT_ANSWERED ? "contained" : "text"}
                 disabled={filter === NOT_ANSWERED}
-              >
-                not answered
-              </Button>
+                children="not answered"
+              />
             </ButtonGroup>
-
             <PollList filter={filter} />
           </Card>
         </Box>
