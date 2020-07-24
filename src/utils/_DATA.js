@@ -220,7 +220,13 @@ export function _saveQuestionAnswer({ authedUser, qid, answer }) {
         }
       };
 
-      res();
+      /**
+       * Uncomment the next line to test optimistic update error handling.
+       *  There is a 50% chance that the Promise will reject, which triggers
+       *  an undo of the optimistic rendering of the answered state
+       */
+      // Math.random() > 0.5 ? res() : rej();
+      res(); // Comment this line when testing the line above
     }, 500);
   });
 }

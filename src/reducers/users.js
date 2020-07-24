@@ -17,7 +17,7 @@ export const usersReducer = (state = {}, action) => {
         }
       };
     case CLEAR_ANSWER:
-      const newAnswers = Object.assign({}, ...state[action.authedUser].answers);
+      const newAnswers = Object.assign({}, state[action.authedUser].answers);
       delete newAnswers[action.pollId];
       return {
         ...state,
