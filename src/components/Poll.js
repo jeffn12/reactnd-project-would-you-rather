@@ -88,3 +88,9 @@ const mapStateToProps = ({ authedUser, polls, users }, props) => {
 };
 
 export default connect(mapStateToProps)(Poll);
+
+/**  Question for reviewer:
+ * would it make sense to move the CardContent with the options for answering the poll into its own component,
+ *  and then pass the option text and handler function down as props?  The fact that the handler function invokes 'dispatch'
+ *  made me keep it like this.
+ */
