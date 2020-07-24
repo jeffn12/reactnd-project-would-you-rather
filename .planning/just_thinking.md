@@ -8,11 +8,11 @@
   - [x] home page
   - [x] leaderboard
   - [x] create new poll
-  - [ ] switch user
+  - [x] switch user
   - [x] current user
 - login
-  - [ ] user picker
-  - [ ] submit
+  - [x] user picker
+  - [x] submit
 - home
   - [x] Navigation
   - [x] polls (unanswered by default)
