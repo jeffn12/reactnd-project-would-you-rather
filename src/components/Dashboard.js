@@ -13,6 +13,11 @@ import {
 // Constants
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
+/**
+ * Dashboard Component to hold the buttons and the poll list
+ * The dashboard is shown by the home (App) view.
+ * A user must be logged in to see the dashboard
+ */
 export class Dashboard extends Component {
   state = {
     filter: NOT_ANSWERED
