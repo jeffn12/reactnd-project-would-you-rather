@@ -10,6 +10,7 @@ import {
   Button,
   TextField
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 // Action Handlers
 import { handleAddPoll } from "../actions/shared";
 
@@ -25,6 +26,7 @@ export class AddPoll extends Component {
       optionOneText: e.target.value
     }));
   };
+
   handleOptionTwoText = (e) => {
     e.persist();
     this.setState(() => ({
@@ -49,39 +51,49 @@ export class AddPoll extends Component {
         alignItems="center"
         justifyContent="center"
       >
-        <Box w={0.5}>
+        <Box w={1}>
           <Card>
             <CardHeader
               title="add a new poll"
               subheader="would you rather..."
             />
             <CardContent>
-              <Container>
-                <TextField
-                  id="optionOneText"
-                  label="option one"
-                  value={optionOneText}
-                  onChange={this.handleOptionOneText}
-                  required
-                />
-              </Container>
-              <Container>
-                <TextField
-                  id="optionTwoText"
-                  label="option two"
-                  value={optionTwoText}
-                  onChange={this.handleOptionTwoText}
-                  required
-                />
-              </Container>
-              <Button
-                variant="contained"
-                color="primary"
-                disabled={optionOneText === "" || optionTwoText === ""}
-                onClick={this.handleSubmit}
-              >
-                ADD POLL
-              </Button>
+              <Container
+                children={
+                  <StyledTextField
+                    id="optionOneText"
+                    label="option one"
+                    value={optionOneText}
+                    onChange={this.handleOptionOneText}
+                    fullWidth
+                    required
+                  />
+                }
+              />
+              <Container
+                children={
+                  <StyledTextField
+                    id="optionTwoText"
+                    label="option two"
+                    value={optionTwoText}
+                    onChange={this.handleOptionTwoText}
+                    required
+                  />
+                }
+              />
+              <Container
+                style={{ margin: "0.5rem auto" }}
+                children={
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    fullWidth
+                    disabled={optionOneText === "" || optionTwoText === ""}
+                    onClick={this.handleSubmit}
+                    children="ADD POLL"
+                  />
+                }
+              />
             </CardContent>
           </Card>
         </Box>
@@ -90,12 +102,16 @@ export class AddPoll extends Component {
   }
 }
 
-const mapStateToProps = ({ users, polls, authedUser }) => {
+const mapStateToProps = ({ authedUser }) => {
   return {
-    users,
-    polls,
     authedUser
   };
 };
 
 export default connect(mapStateToProps)(AddPoll);
+
+const StyledTextField = withStyles({
+  root: {
+    width: "25rem"
+  }
+})(TextField);
