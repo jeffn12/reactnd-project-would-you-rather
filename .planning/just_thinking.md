@@ -5,11 +5,11 @@
 #### Views
 
 - navagation
-  - [ ] home page
-  - [ ] leaderboard
-  - [ ] create new poll
+  - [x] home page
+  - [x] leaderboard
+  - [x] create new poll
   - [ ] switch user
-  - [ ] current user
+  - [x] current user
 - login
   - [ ] user picker
   - [ ] submit
@@ -19,27 +19,26 @@
   - [x] toggle polls (answered v. unanswered)
   - [x] shows authedUser (in Navbar?)
 - questions/:question_id
-  - [ ] title text="would you rather?"
-  - [ ] avatar of user that posted
-  - [ ] the poll question
-  - [ ] if unanswered by authedUser
-    - [ ] 2 options to vote on
-  - [ ] if answered by authedUser
-    - [ ] each option shows stats (# of votes, percentage of votes)
-    - [ ] visual indicator of authedUser's vote
+  - [x] title text="would you rather?"
+  - [x] avatar of user that posted
+  - [x] the poll question
+  - [x] if unanswered by authedUser
+    - [x] 2 options to vote on
+  - [x] if answered by authedUser
+    - [x] each option shows stats (# of votes, percentage of votes)
+    - [x] visual indicator of authedUser's vote
 - add poll
-  - [ ] title text="would you rather?"
-  - [ ] input form to create:
-    - [ ] question
-    - [ ] 2 options to vote on
-    - [ ] submit, w/ redirect to home view
+  - [x] title text="would you rather?"
+  - [x] input form to create:
+    - [x] 2 options to vote on
+    - [x] submit, w/ redirect to home view
 - leaderboard
-  - [ ] entries in order of total # of questions asked and answered
-  - [ ] entry contains
-    - [ ] username
-    - [ ] avatar
-    - [ ] # of questions asked
-    - [ ] # of questions answered
+  - [x] entries in order of total # of questions asked and answered
+  - [x] entry contains
+    - [x] username
+    - [x] avatar
+    - [x] # of questions asked
+    - [x] # of questions answered
 - 404 question not found
 
 _Image Files (.tif) for Views Available Upon Request_
@@ -49,19 +48,19 @@ _Image Files (.tif) for Views Available Upon Request_
 #### Components
 
 - Navigation View (NavBar)
-  - [ ] NavBar
+  - [x] NavBar
 - Add Poll View (AddPoll)
-  - [ ] AddPoll form
+  - [x] AddPoll form
 - Home View (Home)
-  - [ ] PollList
-  - [ ] Poll
+  - [x] PollList
+  - [x] Poll
 - Leaderboard View (Leaderboard)
-  - [ ] LeaderBoardEntry
+  - [x] LeaderBoardEntry
 - Login View
   - [ ] UserChooser
 - Question View
-  - [ ] Poll
-  - [ ] Choice
+  - [x] Poll
+  - [x] Choice
 
 ---
 
@@ -85,8 +84,8 @@ _Image Files (.tif) for Views Available Upon Request_
 - [x] set authed user
 - [x] get polls
 - [x] get users
-- [ ] add a poll
-- [ ] add a poll answer
+- [x] add a poll
+- [x] add a poll answer
 
 ---
 
