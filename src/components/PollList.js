@@ -4,23 +4,26 @@ import { connect } from "react-redux";
 import Poll from "./Poll";
 // Material UI Components
 import { Box } from "@material-ui/core";
-
+// Constants
 export const ANSWERED = "ANSWERED";
 export const NOT_ANSWERED = "NOT_ANSWERED";
 export const ALL = "ALL";
 
+/**
+ * PollList Component - uses a filtered list of poll ids to render the individual polls
+ */
 export class PollList extends Component {
+  // Returns a filtered, sorted list of poll ids
   getFilteredPolls = () => {
     const { users, pollIds, authedUser, filter } = this.props;
 
     if (filter === "ALL") {
       return pollIds;
     }
-    const pollList = users[authedUser]
-      ? filter === ANSWERED
+    const pollList =
+      filter === ANSWERED
         ? pollIds.filter((id) => users[authedUser].answers[id])
-        : pollIds.filter((id) => !users[authedUser].answers[id])
-      : [];
+        : pollIds.filter((id) => !users[authedUser].answers[id]);
     return pollList;
   };
 
