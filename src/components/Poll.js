@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import LoginPage from "./LoginPage";
 import AnsweredPollStats from "./AnsweredPollStats";
 // Routing
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 // Material UI Components
 import {
   Avatar,
@@ -34,12 +34,14 @@ export class Poll extends Component {
     if (!authedUser) return <LoginPage />;
 
     // If the poll does not exist, show a "404: Not Found" error
-    if (!polls[id])
+    if (!polls[id]) {
+      console.log(this.props);
       return (
         <Card>
           <CardContent>404: Poll Not Found</CardContent>
         </Card>
       );
+    }
 
     const poll = polls[id]; // Use the ID to get the poll Object
     const author = users[poll.author]; // The user object of the person who created the poll
@@ -48,7 +50,12 @@ export class Poll extends Component {
 
     return (
       <Link
-        to={hasAnswered ? `/questions/${id}` : ""}
+        to={() => {
+          return hasAnswered ? `/questions/${id}` : "";
+        }}
+        replace={
+          !hasAnswered || this.props.location.pathname === `/questions/${id}`
+        }
         style={{ textDecoration: "none", cursor: "default" }}
       >
         <Card style={{ margin: "0.5rem" }}>
@@ -86,7 +93,8 @@ export class Poll extends Component {
 }
 
 const mapStateToProps = ({ authedUser, polls, users }, props) => {
-  const { id } = props.match.params;
+  const { id } =
+    Object.keys(props.match.params).length !== 0 ? props.match.params : props;
   return {
     authedUser,
     polls,
@@ -95,7 +103,7 @@ const mapStateToProps = ({ authedUser, polls, users }, props) => {
   };
 };
 
-export default connect(mapStateToProps)(Poll);
+export default withRouter(connect(mapStateToProps)(Poll));
 
 /**  Question for reviewer:
  * would it make sense to move the CardContent with the options for answering the poll into its own component,
