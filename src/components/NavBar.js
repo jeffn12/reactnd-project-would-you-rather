@@ -3,20 +3,23 @@ import { connect } from "react-redux";
 // Routing
 import { NavLink } from "react-router-dom";
 // Material UI Components
-import { AppBar, Avatar, Box, Toolbar, Typography } from "@material-ui/core";
+import {
+  AppBar,
+  Avatar,
+  Box,
+  Toolbar,
+  Tooltip,
+  Typography
+} from "@material-ui/core";
+import { setAuthedUser } from "../actions/authedUser";
 
 export class NavBar extends Component {
-  getDivider = () => {
-    return (
-      <Typography variant="h6" style={{ padding: "0 .5rem" }}>
-        |
-      </Typography>
-    );
+  handleLogout = () => {
+    this.props.dispatch(setAuthedUser(null));
   };
-
   render() {
     const { authedUser, users } = this.props;
-    if (!authedUser) return <></>;
+
     const user = users[authedUser];
     return (
       <AppBar color="primary" position="static">
@@ -33,26 +36,29 @@ export class NavBar extends Component {
                   home
                 </NavLink>
               </Typography>
-              {this.getDivider()}
+              {getDivider()}
               <Typography variant="body1">
                 <NavLink to="/leaderboard">leaderboard</NavLink>
               </Typography>
-              {this.getDivider()}
+              {getDivider()}
               <Typography variant="body1">
                 <NavLink to="/add">create a poll</NavLink>
               </Typography>
             </Box>
-            <Box
-              display="flex"
-              justifyContent="end"
-              alignItems="center"
-              flexShrink={1}
-            >
-              <Typography variant="body2" style={{ padding: ".25rem" }}>
-                welcome, {user.id}!
-              </Typography>
-              <Avatar src={user.avatarURL} />
-            </Box>
+            <Tooltip title="Click to Switch User">
+              <Box
+                display="flex"
+                justifyContent="end"
+                alignItems="center"
+                flexShrink={1}
+                onClick={this.handleLogout}
+              >
+                <Typography variant="body2" style={{ padding: ".25rem" }}>
+                  welcome, {user.id}!
+                </Typography>
+                <Avatar src={user.avatarURL} />
+              </Box>
+            </Tooltip>
           </Box>
         </Toolbar>
       </AppBar>
@@ -75,4 +81,13 @@ NavLink.defaultProps = {
     textDecoration: "underline",
     fontWeight: "bold"
   }
+};
+
+// Style Helpers
+const getDivider = () => {
+  return (
+    <Typography variant="h6" style={{ padding: "0 .5rem" }}>
+      |
+    </Typography>
+  );
 };
