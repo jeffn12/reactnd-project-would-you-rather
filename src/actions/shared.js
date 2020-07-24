@@ -9,6 +9,7 @@ import { getUsers } from "./users";
 
 export const ANSWER_POLL = "ANSWER_POLL";
 export const ADD_POLL = "ADD_POLL";
+export const CLEAR_ANSWER = "CLEAR_ANSWER";
 
 // Action Handlers
 export const handleInitialData = () => {
@@ -27,13 +28,14 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
     dispatch(answerPoll(pollId, option, authedUser));
     _saveQuestionAnswer({ authedUser, qid: pollId, answer: option }).catch(
       (err) => {
-        console.log("there was an error");
+        dispatch(clearPollAnswer(pollId, option, authedUser));
+        console.log("There was an error saving the poll response: ", err);
+        alert("There was an problem answering the poll.  Please try again.");
       }
     );
   };
 };
 
-// question = { author, optionOneText, optionTwoText }
 export const handleAddPoll = (author, optionOneText, optionTwoText) => {
   return (dispatch) => {
     _saveQuestion({ author, optionOneText, optionTwoText })
@@ -48,6 +50,15 @@ export const handleAddPoll = (author, optionOneText, optionTwoText) => {
 const answerPoll = (pollId, option, authedUser) => {
   return {
     type: ANSWER_POLL,
+    pollId,
+    option,
+    authedUser
+  };
+};
+
+const clearPollAnswer = (pollId, option, authedUser) => {
+  return {
+    type: CLEAR_ANSWER,
     pollId,
     option,
     authedUser
