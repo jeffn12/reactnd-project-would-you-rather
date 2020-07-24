@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 // Components
 import LoginPage from "./LoginPage";
 import AnsweredPollStats from "./AnsweredPollStats";
+// Routing
+import { Link } from "react-router-dom";
 // Material UI Components
 import {
   Avatar,
@@ -42,37 +44,43 @@ export class Poll extends Component {
     const poll = polls[id]; // Use the ID to get the poll Object
     const author = users[poll.author]; // The user object of the person who created the poll
     const currentUser = users[authedUser]; // The user object of the person who is answering the poll
+    const hasAnswered = poll[currentUser.answers[id]] ? true : false;
 
     return (
-      <Card style={{ margin: "0.5rem" }}>
-        <CardHeader
-          avatar={<Avatar src={author.avatarURL} />}
-          title={`${author.name} wants to know:`}
-          subheader="would you rather..."
-        />
-        {poll[currentUser.answers[id]] ? (
-          <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
-        ) : (
-          // If the user has not answered the poll, render both options
-          <CardContent>
-            <Button
-              fullWidth={true}
-              variant="outlined"
-              color="primary"
-              onClick={() => this.handleChange("optionOne")}
-              children={poll.optionOne.text}
-            />
-            <Typography align="center">or...</Typography>
-            <Button
-              fullWidth={true}
-              variant="outlined"
-              color="primary"
-              onClick={() => this.handleChange("optionTwo")}
-              children={poll.optionTwo.text}
-            />
-          </CardContent>
-        )}
-      </Card>
+      <Link
+        to={hasAnswered ? `/questions/${id}` : ""}
+        style={{ textDecoration: "none", cursor: "default" }}
+      >
+        <Card style={{ margin: "0.5rem" }}>
+          <CardHeader
+            avatar={<Avatar src={author.avatarURL} />}
+            title={`${author.name} wants to know:`}
+            subheader="would you rather..."
+          />
+          {hasAnswered ? (
+            <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
+          ) : (
+            // If the user has not answered the poll, render both options
+            <CardContent>
+              <Button
+                fullWidth={true}
+                variant="outlined"
+                color="primary"
+                onClick={() => this.handleChange("optionOne")}
+                children={poll.optionOne.text}
+              />
+              <Typography align="center">or...</Typography>
+              <Button
+                fullWidth={true}
+                variant="outlined"
+                color="primary"
+                onClick={() => this.handleChange("optionTwo")}
+                children={poll.optionTwo.text}
+              />
+            </CardContent>
+          )}
+        </Card>
+      </Link>
     );
   }
 }
