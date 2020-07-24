@@ -10,29 +10,35 @@ import {
 import { withStyles } from "@material-ui/styles";
 
 export const LeaderBoardEntry = (props) => {
-  const { user, totals } = props;
+  const { user, totals, place } = props;
   const { id, name, avatarURL } = user;
   const { totalQuestions } = totals;
 
   return (
     <Box
       p="1rem"
-      width={1}
+      width={3 / 4}
       display="flex"
       alignItems="center"
       justifyContent="space-between"
     >
+      <Typography variant="h5" style={{ marginRight: "2rem" }}>
+        {place}.
+      </Typography>
       <StyledAvatar src={avatarURL} alt={"avatar of " + id} />
       <Box
-        minWidth={250}
+        minWidth="10rem"
         mx="0.5rem"
         display="flex"
         flexDirection="column"
-        alignItems="center"
-        justifyContent="space-between"
+        alignItems="flex-start"
       >
-        <Typography variant="h6">{name}</Typography>
-        <Typography variant="body2">({id})</Typography>
+        <Typography variant="h6" align="center">
+          {name}
+        </Typography>
+        <Typography variant="body2" align="center">
+          ({id})
+        </Typography>
       </Box>
       <Box
         mx="0.5rem"
@@ -41,7 +47,9 @@ export const LeaderBoardEntry = (props) => {
         justifyContent="start"
         alignItems="center"
       >
-        <Typography variant="body1">Number of Questions Answered</Typography>
+        <Typography variant="body1" align="center">
+          Number of Questions Answered
+        </Typography>
         <Box display="flex" alignItems="center" width={1}>
           <Container>
             {CircularProgressWithLabel(
@@ -63,7 +71,9 @@ export const LeaderBoardEntry = (props) => {
         justifyContent="start"
         alignItems="center"
       >
-        <Typography variant="body1">Number of Questions Asked</Typography>
+        <Typography variant="body1" align="center">
+          Number of Questions Asked
+        </Typography>
         <Box display="flex" alignItems="center" width={1}>
           <Container>
             {CircularProgressWithLabel(user.questions.length, totalQuestions)}

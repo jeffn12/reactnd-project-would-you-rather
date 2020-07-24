@@ -10,11 +10,12 @@ export class Leaderboard extends Component {
     const { users, userIds, totalQuestions } = this.props;
 
     return (
-      <Box width={"96%"}>
+      <Box width={1} display="flex" flexDirection="column" alignItems="center">
         <Typography variant="h6">leaderboard</Typography>
-        {userIds.map((id) => (
+        {userIds.map((id, index) => (
           <LeaderBoardEntry
             key={id}
+            place={index + 1}
             user={users[id]}
             totals={{ totalQuestions }}
           />
