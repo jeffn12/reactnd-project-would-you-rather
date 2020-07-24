@@ -6,7 +6,6 @@ import {
 } from "../utils/_DATA";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
-import { setAuthedUser } from "./authedUser";
 
 export const ANSWER_POLL = "ANSWER_POLL";
 export const ADD_POLL = "ADD_POLL";
@@ -18,7 +17,6 @@ export const handleInitialData = () => {
       ([questions, users]) => {
         dispatch(getPolls(questions));
         dispatch(getUsers(users));
-        dispatch(setAuthedUser("jeffn12")); //hardcoded for development - remove this line when ready to test
       }
     );
   };

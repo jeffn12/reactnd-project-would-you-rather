@@ -14,7 +14,7 @@ import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
 export class Dashboard extends Component {
   state = {
-    filter: ALL
+    filter: NOT_ANSWERED
   };
 
   render() {
