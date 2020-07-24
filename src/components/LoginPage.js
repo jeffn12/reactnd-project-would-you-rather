@@ -15,10 +15,10 @@ import { withStyles } from "@material-ui/styles";
 export class LoginPage extends Component {
   render() {
     return (
-      <Box display="flex" alignItems="center" justifyContent="center">
+      <Box display="flex" justifyContent="center" my="5rem">
         <Card>
           <StyledCardMedia image="jeffn12_avatar.jpg" />
-          <CardHeader subheader="log in to play" />
+          <CardHeader title="would you rather?" subheader="log in to play" />
           <CardContent children={<UserSelector />} />
         </Card>
       </Box>
