@@ -4,13 +4,14 @@ import { connect } from "react-redux";
 import { setAuthedUser } from "../actions/authedUser";
 // Material UI
 import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 
 export class UserSelector extends Component {
   render() {
     const { dispatch, userIds, users, authedUser } = this.props;
 
     return (
-      <FormControl fullWidth={true}>
+      <StyledFormControl>
         <InputLabel id="user-select-label">Choose Your Username</InputLabel>
         <Select
           labelId="user-select-label"
@@ -26,7 +27,7 @@ export class UserSelector extends Component {
             </MenuItem>
           ))}
         </Select>
-      </FormControl>
+      </StyledFormControl>
     );
   }
 }
@@ -40,3 +41,10 @@ const mapStateToProps = ({ users, authedUser }) => {
 };
 
 export default connect(mapStateToProps)(UserSelector);
+
+const StyledFormControl = withStyles({
+  root: {
+    minWidth: "400px",
+    width: "50%"
+  }
+})(FormControl);
