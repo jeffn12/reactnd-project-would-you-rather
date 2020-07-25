@@ -16,7 +16,7 @@ export class Leaderboard extends Component {
 
     return (
       <Box width={1} display="flex" flexDirection="column" alignItems="center">
-        <Typography variant="h6">leaderboard</Typography>
+        <Typography variant="h5">leaderboard</Typography>
         {userIds.map((id, index) => (
           <LeaderBoardEntry
             key={id}
