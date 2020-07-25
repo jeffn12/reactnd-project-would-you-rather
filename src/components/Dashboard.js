@@ -33,7 +33,7 @@ export class Dashboard extends Component {
         alignItems="center"
       >
         <Box width={1}>
-          <Card>
+          <Card elevation={0}>
             <CardMedia>
               <img
                 src="/would_you_rather_logo.jpg"
