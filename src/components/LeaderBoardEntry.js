@@ -7,12 +7,15 @@ import {
   Typography,
   CircularProgress
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
 
+/**
+ * LeaderBoardEntry Component
+ * @description a row on the leaderboard, holds all of the information for one user
+ */
 export const LeaderBoardEntry = (props) => {
-  const { user, totals, place } = props;
-  const { id, name, avatarURL } = user;
+  const { user, totals, place } = props; // get the poll information
   const { totalQuestions } = totals;
+  const { id, name, avatarURL } = user; // get the user's information
 
   return (
     <Box
@@ -22,10 +25,17 @@ export const LeaderBoardEntry = (props) => {
       alignItems="center"
       justifyContent="space-between"
     >
-      <Typography variant="h5" style={{ marginRight: "2rem" }}>
+      <Typography
+        variant="h5"
+        style={{ fontStyle: "italic", marginRight: "2rem" }}
+      >
         {place}.
       </Typography>
-      <StyledAvatar src={avatarURL} alt={"avatar of " + id} />
+      <Avatar
+        src={avatarURL}
+        alt={"avatar of " + id}
+        style={{ width: "60px", height: "60px" }}
+      />
       <Box
         minWidth="10rem"
         mx="0.5rem"
@@ -44,8 +54,7 @@ export const LeaderBoardEntry = (props) => {
         mx="0.5rem"
         display="flex"
         flexDirection="column"
-        justifyContent="start"
-        alignItems="center"
+        alignItems="flex-start"
       >
         <Typography variant="body1" align="center">
           Number of Questions Answered
@@ -91,13 +100,7 @@ export const LeaderBoardEntry = (props) => {
 
 export default LeaderBoardEntry;
 
-const StyledAvatar = withStyles({
-  root: {
-    width: "50px",
-    height: "50px"
-  }
-})(Avatar);
-
+// Custom circular progress bar with percentage label
 const CircularProgressWithLabel = (value, total) => {
   return (
     <Box

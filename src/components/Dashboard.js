@@ -14,9 +14,9 @@ import {
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
 /**
- * Dashboard Component to hold the buttons and the poll list
- * The dashboard is shown by the home (App) view.
- * A user must be logged in to see the dashboard
+ * Dashboard Component
+ * @description presentational component to display the poll list and it's polls.
+ * The dashboard keeps track of the list filter to send to PollList
  */
 export class Dashboard extends Component {
   state = {
@@ -45,7 +45,6 @@ export class Dashboard extends Component {
                 }}
               />
             </CardMedia>
-
             <CardHeader subheader="which questions would you like to see?" />
             <ButtonGroup size="large" variant="text" fullWidth={true}>
               <Button

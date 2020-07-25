@@ -12,7 +12,10 @@ export const ANSWER_POLL = "ANSWER_POLL";
 export const ADD_POLL = "ADD_POLL";
 export const CLEAR_ANSWER = "CLEAR_ANSWER";
 
-// Action Handlers
+/**
+ *  Action Handlers
+ */
+// Fetch list of polls and users, put into store
 export const handleInitialData = () => {
   return (dispatch) => {
     dispatch(showLoading());
@@ -26,6 +29,8 @@ export const handleInitialData = () => {
   };
 };
 
+// Optimistically update the poll answer for the current user,
+//   if the "server" rejects the answer, it is reset
 export const handleAnswerPoll = (pollId, option, authedUser) => {
   return (dispatch) => {
     dispatch(answerPoll(pollId, option, authedUser));
@@ -41,6 +46,7 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
   };
 };
 
+// Add a poll to the database.  The API returns a formatted question
 export const handleAddPoll = (author, optionOneText, optionTwoText) => {
   return (dispatch) => {
     dispatch(showLoading());
@@ -57,7 +63,9 @@ export const handleAddPoll = (author, optionOneText, optionTwoText) => {
   };
 };
 
-// Action Creators
+/**
+ *  Action Creators
+ */
 const answerPoll = (pollId, option, authedUser) => {
   return {
     type: ANSWER_POLL,

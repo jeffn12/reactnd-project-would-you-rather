@@ -5,6 +5,11 @@ import { LeaderBoardEntry } from "./LeaderBoardEntry";
 // Material UI
 import { Box, Typography } from "@material-ui/core";
 
+/**
+ * Leaderboard Component
+ * @description display a list of users in order of how many questions they
+ * asked + how many questions they answered (descending).
+ */
 export class Leaderboard extends Component {
   render() {
     const { users, userIds, totalQuestions } = this.props;

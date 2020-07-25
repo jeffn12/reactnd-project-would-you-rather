@@ -1,6 +1,14 @@
 import { GET_POLLS } from "../actions/polls";
 import { ANSWER_POLL, ADD_POLL, CLEAR_ANSWER } from "../actions/shared";
 
+/**
+ * pollsReducer functions:
+ *  get polls - get all of the polls
+ *  answer poll - take a poll id and an answer, add it to the answer's votes array
+ *  clear poll - if the "server" rejects the poll answer, reset it [for optimistic updating]
+ *  add poll - add a new poll to the list
+ *
+ */
 export const pollsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_POLLS:

@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// Actions
-import { setAuthedUser } from "../actions/authedUser";
 // Material UI
 import {
   Avatar,
@@ -10,14 +8,20 @@ import {
   Select,
   FormControl
 } from "@material-ui/core";
-import { withStyles } from "@material-ui/styles";
+// Actions
+import { setAuthedUser } from "../actions/authedUser";
 
+/**
+ * UserSelector Component
+ * @description input selector that displays a list of available users
+ * each option on the list shows the users avatar and their id
+ */
 export class UserSelector extends Component {
   render() {
     const { dispatch, userIds, users, authedUser } = this.props;
 
     return (
-      <StyledFormControl>
+      <FormControl style={{ minWidth: "350px", width: "50%" }}>
         <InputLabel id="user-select-label">Choose Your Username</InputLabel>
         <Select
           labelId="user-select-label"
@@ -37,7 +41,7 @@ export class UserSelector extends Component {
             </MenuItem>
           ))}
         </Select>
-      </StyledFormControl>
+      </FormControl>
     );
   }
 }
@@ -51,10 +55,3 @@ const mapStateToProps = ({ users, authedUser }) => {
 };
 
 export default connect(mapStateToProps)(UserSelector);
-
-const StyledFormControl = withStyles({
-  root: {
-    minWidth: "400px",
-    width: "50%"
-  }
-})(FormControl);

@@ -16,9 +16,14 @@ import {
 import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/styles";
 
+/**
+ * LoginPage Component
+ * @description the login box with the game logo and a user selector
+ */
 export class LoginPage extends Component {
   render() {
-    return (
+    // Return the LoginPage if we are not at the /add-user endpoint
+    return this.props.location.pathname !== "/add-user" ? (
       <Box display="flex" justifyContent="center" my="5rem">
         <Card>
           <StyledCardMedia image="/would_you_rather_logo.jpg" />
@@ -39,6 +44,8 @@ export class LoginPage extends Component {
           </Fab>
         </Link>
       </Box>
+    ) : (
+      <></>
     );
   }
 }
@@ -51,6 +58,7 @@ const mapStateToProps = ({ authedUser }) => {
 
 export default connect(mapStateToProps)(LoginPage);
 
+// Style the card media so that it displays on card
 const StyledCardMedia = withStyles({
   root: { height: "25%", minHeight: "140px" }
 })(CardMedia);

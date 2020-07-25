@@ -13,6 +13,10 @@ import {
 } from "@material-ui/core";
 import { setAuthedUser } from "../actions/authedUser";
 
+/**
+ * NavBar Component
+ * @description navigation header displayed when a user is logged in
+ */
 export class NavBar extends Component {
   handleLogout = () => {
     this.props.dispatch(setAuthedUser(null));
@@ -75,6 +79,7 @@ const mapStateToProps = ({ authedUser, users }) => {
 
 export default connect(mapStateToProps)(NavBar);
 
+// Set default properties for the NavLinks
 NavLink.defaultProps = {
   style: { textDecoration: "none", color: "white" },
   activeStyle: {
@@ -83,7 +88,7 @@ NavLink.defaultProps = {
   }
 };
 
-// Style Helpers
+// Custom divider for in between NavLinks
 const getDivider = () => {
   return (
     <Typography variant="h6" style={{ padding: "0 .5rem" }}>

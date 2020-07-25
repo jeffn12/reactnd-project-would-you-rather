@@ -5,20 +5,10 @@ import { setAuthedUser } from "./authedUser";
 export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER";
 
-export const getUsers = (users) => {
-  return {
-    type: GET_USERS,
-    users
-  };
-};
-
-export const addUser = (user) => {
-  return {
-    type: ADD_USER,
-    user
-  };
-};
-
+/**
+ * Action Handlers
+ */
+// Add a new user to the database.  The API call returns a formatted user
 export const handleAddUser = (user) => {
   return (dispatch) => {
     dispatch(showLoading());
@@ -34,5 +24,22 @@ export const handleAddUser = (user) => {
         );
       });
     dispatch(hideLoading());
+  };
+};
+
+/**
+ * Action Creators
+ */
+export const getUsers = (users) => {
+  return {
+    type: GET_USERS,
+    users
+  };
+};
+
+export const addUser = (user) => {
+  return {
+    type: ADD_USER,
+    user
   };
 };

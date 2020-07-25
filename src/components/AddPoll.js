@@ -14,26 +14,30 @@ import { withStyles } from "@material-ui/styles";
 // Action Handlers
 import { handleAddPoll } from "../actions/shared";
 
+/**
+ * AddPoll Component
+ * @description form to collect information about a new poll.
+ * The user must include 2 options in order for the submit button to become active
+ */
 export class AddPoll extends Component {
   state = {
     optionOneText: "",
     optionTwoText: ""
   };
 
+  // Controlled Component Handlers:
   handleOptionOneText = (e) => {
     e.persist();
     this.setState(() => ({
       optionOneText: e.target.value
     }));
   };
-
   handleOptionTwoText = (e) => {
     e.persist();
     this.setState(() => ({
       optionTwoText: e.target.value
     }));
   };
-
   handleSubmit = (e) => {
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch, authedUser } = this.props;
@@ -110,8 +114,9 @@ const mapStateToProps = ({ authedUser }) => {
 
 export default connect(mapStateToProps)(AddPoll);
 
+// Custom Styles
 const StyledTextField = withStyles({
   root: {
-    width: "25rem"
+    width: "20rem"
   }
 })(TextField);

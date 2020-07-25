@@ -16,6 +16,13 @@ import { Box } from "@material-ui/core";
 // Actions
 import { handleInitialData } from "../actions/shared";
 
+/**
+ * App Component
+ * @description main component of the Would You Rather? game.
+ *  - gets initial data on mount
+ *  - defines route
+ *  - tracks authed user for displaying correctly
+ */
 export class App extends Component {
   componentDidMount = () => {
     this.props.dispatch(handleInitialData());
@@ -31,13 +38,14 @@ export class App extends Component {
             backgroundColor: "red"
           }}
         />
-        {loading === 0 ? (
-          !authedUser ? (
+        {loading === 0 && // Render the app when the data is done loading
+          (!authedUser ? ( // If there is no authed user, show the login page
             <>
-              <Route exact path="/" component={LoginPage} />
+              <Route path="/" component={LoginPage} />
               <Route path="/add-user" component={AddUser} />
             </>
           ) : (
+            // If there is an authed user, render the game
             <React.Fragment>
               <NavBar />
               <Route exact path="/" component={Dashboard} />
@@ -45,10 +53,7 @@ export class App extends Component {
               <Route path="/leaderboard" component={Leaderboard} />
               <Route path="/questions/:id" component={Poll} />
             </React.Fragment>
-          )
-        ) : (
-          <></>
-        )}
+          ))}
       </Box>
     );
   }

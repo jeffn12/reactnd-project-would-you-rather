@@ -18,6 +18,11 @@ import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
 import { handleAddUser } from "../actions/users";
 
+/**
+ * AddUser Component
+ * @description form to create a new user for the game.  Requires a unique ID, name,
+ * and an avatar url.
+ */
 export class AddUser extends Component {
   state = {
     id: "",
@@ -25,20 +30,19 @@ export class AddUser extends Component {
     avatarURL: ""
   };
 
+  // Controlled Component Handlers:
   handleIdText = (e) => {
     e.persist();
     this.setState(() => ({
       id: e.target.value
     }));
   };
-
   handleNameText = (e) => {
     e.persist();
     this.setState(() => ({
       name: e.target.value
     }));
   };
-
   handleAvatarUrlText = (e) => {
     e.persist();
     this.setState(() => ({
@@ -46,12 +50,13 @@ export class AddUser extends Component {
     }));
   };
 
+  // Submission Handler
   handleSubmit = (e) => {
     e.preventDefault();
     const { id, name, avatarURL } = this.state;
     this.setState({ id: "", name: "", avatarURL: "" });
     this.props.dispatch(handleAddUser({ id, name, avatarURL }));
-    this.props.history.push("/");
+    this.props.history.push("/"); // push back to the home route
   };
 
   render() {
@@ -141,8 +146,9 @@ export class AddUser extends Component {
 
 export default connect()(AddUser);
 
+// Custom Style
 const StyledTextField = withStyles({
   root: {
-    width: "25rem"
+    width: "20rem"
   }
 })(TextField);

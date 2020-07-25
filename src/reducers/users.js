@@ -1,6 +1,14 @@
 import { GET_USERS, ADD_USER } from "../actions/users";
 import { ANSWER_POLL, ADD_POLL, CLEAR_ANSWER } from "../actions/shared";
 
+/**
+ * usersReducer functions:
+ *  get users - get all of the users
+ *  answer poll - add the id/answer of the poll to the user's answers object
+ *  clear answer - if the "server" rejects answering the poll, reset answers object
+ *  add poll - add the poll id to the user's questions array
+ *
+ */
 export const usersReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS:

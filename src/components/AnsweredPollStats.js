@@ -8,6 +8,15 @@ import {
   Box
 } from "@material-ui/core";
 
+/**
+ * AnsweredPollStats Component
+ * @description calculate and display a statistics dashboard for a poll including:
+ *  total # of questions
+ *  # of questions asked
+ *  # of questiosn answered
+ *  % of questions asked
+ *  % of questions answered
+ */
 export class AnsweredPollStats extends Component {
   render() {
     const { id, poll, currentUser } = this.props;
@@ -70,6 +79,7 @@ const mapStateToProps = ({ polls, users, authedUser }, props) => {
 
 export default connect(mapStateToProps)(AnsweredPollStats);
 
+// Custom indicator with a percentage label
 const LinearProgressWithLabel = (votes, color) => {
   const { raw, percent } = votes;
   return (

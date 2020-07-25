@@ -10,7 +10,8 @@ export const NOT_ANSWERED = "NOT_ANSWERED";
 export const ALL = "ALL";
 
 /**
- * PollList Component - uses a filtered list of poll ids to render the individual polls
+ * PollList Component
+ * @description uses a filtered list of poll ids to render the individual polls
  */
 export class PollList extends Component {
   // Returns a filtered, sorted list of poll ids

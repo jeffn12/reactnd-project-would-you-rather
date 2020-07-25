@@ -13,14 +13,11 @@ import {
   Typography,
   Button
 } from "@material-ui/core";
-// Helpers
+// Actions
 import { handleAnswerPoll } from "../actions/shared";
 
 export class Poll extends Component {
-  /**
-   * Handle poll submission by dispatching the handleAnswerPoll event with the poll id, current user, and the selected option
-   * @param {String} option
-   */
+  //Handle poll submission by dispatching the handleAnswerPoll event with the poll id, current user, and the selected option
   handleChange = (option, event) => {
     event.preventDefault();
     const { dispatch, authedUser, id } = this.props;
@@ -42,7 +39,7 @@ export class Poll extends Component {
     const poll = polls[id]; // Use the ID to get the poll Object
     const author = users[poll.author]; // The user object of the person who created the poll
     const currentUser = users[authedUser]; // The user object of the person who is answering the poll
-    const hasAnswered = poll[currentUser.answers[id]] ? true : false;
+    const hasAnswered = poll[currentUser.answers[id]] ? true : false; // true if user answered already
 
     return (
       <Link
@@ -68,7 +65,7 @@ export class Poll extends Component {
                 onClick={(e) => this.handleChange("optionOne", e)}
                 children={poll.optionOne.text}
               />
-              <Typography align="center">or...</Typography>
+              <Typography align="center">or</Typography>
               <Button
                 fullWidth={true}
                 variant="outlined"
