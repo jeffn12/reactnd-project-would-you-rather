@@ -35,17 +35,17 @@ export class NavBar extends Component {
               flexGrow={1}
               alignItems="center"
             >
-              <Typography variant="body1">
+              <Typography variant="body1" align="center">
                 <NavLink to="/" exact>
                   home
                 </NavLink>
               </Typography>
               {getDivider()}
-              <Typography variant="body1">
+              <Typography variant="body1" align="center">
                 <NavLink to="/leaderboard">leaderboard</NavLink>
               </Typography>
               {getDivider()}
-              <Typography variant="body1">
+              <Typography variant="body1" align="center">
                 <NavLink to="/add">create a poll</NavLink>
               </Typography>
             </Box>
