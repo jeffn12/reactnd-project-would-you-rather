@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+// Routing
+import { Link } from "react-router-dom";
 // Material UI
 import {
   Box,
@@ -8,9 +10,11 @@ import {
   CardHeader,
   CardContent,
   Button,
-  TextField
+  TextField,
+  Fab
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
+import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
 import { handleAddUser } from "../actions/users";
 
@@ -117,6 +121,19 @@ export class AddUser extends Component {
             </CardContent>
           </Card>
         </Box>
+        <Link to="/">
+          <Fab
+            variant="extended"
+            style={{
+              position: "absolute",
+              bottom: 20,
+              right: 20
+            }}
+          >
+            <HomeIcon />
+            home
+          </Fab>
+        </Link>
       </Box>
     );
   }
