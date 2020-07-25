@@ -16,7 +16,7 @@ Would you rather play a game, or wash the dishes? You should probably take a bre
 1. start the application using the command `npm start`
 1. if your browser doesn't open automatically, click on the link in your command prompt to open the application in your browser
 
-A live version is coming soon!
+Play on the internet (pre-built): [https://jn-would-you-rather.herokuapp.com/](https://jn-would-you-rather.herokuapp.com/)
 
 ## Endpoints
 
