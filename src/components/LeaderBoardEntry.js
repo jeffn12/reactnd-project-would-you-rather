@@ -1,13 +1,7 @@
 import React from "react";
 // Material UI
-import {
-  Avatar,
-  Badge,
-  Box,
-  Container,
-  Typography,
-  CircularProgress
-} from "@material-ui/core";
+import { Avatar, Badge, Box, Typography } from "@material-ui/core";
+import LeaderBoardEntryStats from "./LeaderBoardEntryStats";
 
 /**
  * LeaderBoardEntry Component
@@ -70,92 +64,10 @@ export const LeaderBoardEntry = (props) => {
             ({id})
           </Typography>
         </Box>
-        <Box id="stats-info" display="flex">
-          <Box
-            mx="0.5rem"
-            display="flex"
-            flexDirection="column"
-            alignItems="flex-start"
-          >
-            <Typography variant="body2" align="center">
-              Number of Questions Answered
-            </Typography>
-            <Box display="flex" alignItems="center" width={1}>
-              <Container>
-                {CircularProgressWithLabel(
-                  Object.keys(user.answers).length,
-                  totalQuestions
-                )}
-              </Container>
-              <Container>
-                <Typography variant="subtitle2">
-                  {Object.keys(user.answers).length}/{totalQuestions}
-                </Typography>
-              </Container>
-            </Box>
-          </Box>
-          <Box
-            mx="0.5rem"
-            display="flex"
-            flexDirection="column"
-            justifyContent="start"
-            alignItems="center"
-          >
-            <Typography variant="2" align="center">
-              Number of Questions Asked
-            </Typography>
-            <Box display="flex" alignItems="center" width={1}>
-              <Container>
-                {CircularProgressWithLabel(
-                  user.questions.length,
-                  totalQuestions
-                )}
-              </Container>
-              <Container>
-                <Typography variant="subtitle2">
-                  {user.questions.length}/{totalQuestions}
-                </Typography>
-              </Container>
-            </Box>
-          </Box>
-        </Box>
+        <LeaderBoardEntryStats user={user} totalQuestions={totalQuestions} />
       </Box>
     </Box>
   );
 };
 
 export default LeaderBoardEntry;
-
-// Custom circular progress bar with percentage label
-const CircularProgressWithLabel = (value, total) => {
-  return (
-    <Box
-      my="0.5rem"
-      position="relative"
-      display="inline-flex"
-      alignItems="center"
-    >
-      <CircularProgress
-        size={50}
-        variant="static"
-        value={(value / total) * 100}
-      />
-      <Box
-        top={0}
-        left={0}
-        bottom={0}
-        right={0}
-        position="absolute"
-        display="flex"
-        alignItems="center"
-        justifyContent="center"
-      >
-        <Typography
-          variant="caption"
-          component="div"
-          color="textSecondary"
-        >{`${Math.round((value / total) * 100)}%`}</Typography>
-      </Box>
-    </Box>
-  );
-};
