@@ -1,5 +1,6 @@
 import { _saveUser } from "../utils/_DATA";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { setAuthedUser } from "./authedUser";
 
 export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER";
@@ -25,6 +26,7 @@ export const handleAddUser = (user) => {
       .then((formattedUser) => {
         console.log(formattedUser);
         dispatch(addUser(formattedUser));
+        dispatch(setAuthedUser(formattedUser.id));
       })
       .catch((err) => {
         console.log("Error adding user: ", JSON.stringify(err));
