@@ -6,6 +6,7 @@ import {
 } from "../utils/_DATA";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 export const ANSWER_POLL = "ANSWER_POLL";
 export const ADD_POLL = "ADD_POLL";
@@ -14,10 +15,12 @@ export const CLEAR_ANSWER = "CLEAR_ANSWER";
 // Action Handlers
 export const handleInitialData = () => {
   return (dispatch) => {
+    dispatch(showLoading());
     return Promise.all([_getQuestions(), _getUsers()]).then(
       ([questions, users]) => {
         dispatch(getPolls(questions));
         dispatch(getUsers(users));
+        dispatch(hideLoading());
       }
     );
   };
@@ -26,6 +29,7 @@ export const handleInitialData = () => {
 export const handleAnswerPoll = (pollId, option, authedUser) => {
   return (dispatch) => {
     dispatch(answerPoll(pollId, option, authedUser));
+    dispatch(showLoading());
     _saveQuestionAnswer({ authedUser, qid: pollId, answer: option }).catch(
       (err) => {
         dispatch(clearPollAnswer(pollId, option, authedUser));
@@ -33,16 +37,23 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
         alert("There was an problem answering the poll.  Please try again.");
       }
     );
+    dispatch(hideLoading());
   };
 };
 
 export const handleAddPoll = (author, optionOneText, optionTwoText) => {
   return (dispatch) => {
+    dispatch(showLoading());
     _saveQuestion({ author, optionOneText, optionTwoText })
       .then((question) => {
         dispatch(addPoll(question));
+        dispatch(hideLoading());
       })
-      .catch((err) => console.log("there was an error"));
+      .catch((err) => {
+        dispatch(hideLoading());
+        console.log("There was an error: ", err);
+        alert("There was an error adding the poll.  Please try again.");
+      });
   };
 };
 

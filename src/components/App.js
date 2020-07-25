@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-// Routing
-import { Route } from "react-router-dom";
 // Components
 import NavBar from "./NavBar";
 import LoginPage from "./LoginPage";
@@ -9,9 +7,13 @@ import Dashboard from "./Dashboard";
 import Leaderboard from "./Leaderboard";
 import AddPoll from "./AddPoll";
 import Poll from "./Poll";
-// Material UI Components
+import LoadingBar from "react-redux-loading-bar";
+// Routing
+import { Route } from "react-router-dom";
+// Material UI
 import { Box } from "@material-ui/core";
-// Helpers
+
+// Actions
 import { handleInitialData } from "../actions/shared";
 
 export class App extends Component {
@@ -24,6 +26,7 @@ export class App extends Component {
 
     return (
       <Box>
+        <LoadingBar style={{ backgroundColor: "red", height: "8px" }} />
         {!authedUser ? (
           <LoginPage />
         ) : (
