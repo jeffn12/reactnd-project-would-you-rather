@@ -27,7 +27,7 @@ export class NavBar extends Component {
     const user = users[authedUser];
     return (
       <AppBar color="primary" position="static">
-        <Toolbar>
+        <Toolbar style={{ padding: "0 12px" }}>
           <Box display="flex" width="100%">
             <Box
               display="flex"
@@ -52,13 +52,12 @@ export class NavBar extends Component {
             <Tooltip title="Click to Switch User">
               <Box
                 display="flex"
-                justifyContent="end"
                 alignItems="center"
                 flexShrink={1}
                 onClick={this.handleLogout}
               >
-                <Typography variant="body2" style={{ padding: ".25rem" }}>
-                  welcome, {user.id}!
+                <Typography variant="body2" style={{ padding: ".5rem" }}>
+                  {user.id}
                 </Typography>
                 <Avatar src={user.avatarURL} />
               </Box>
