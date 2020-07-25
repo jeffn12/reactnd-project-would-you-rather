@@ -22,30 +22,39 @@ export class App extends Component {
   };
 
   render() {
-    const { authedUser } = this.props;
+    const { authedUser, loading } = this.props;
 
     return (
       <Box>
-        <LoadingBar style={{ backgroundColor: "red", height: "8px" }} />
-        {!authedUser ? (
-          <LoginPage />
+        <LoadingBar
+          style={{
+            backgroundColor: "red"
+          }}
+        />
+        {loading === 0 ? (
+          !authedUser ? (
+            <LoginPage />
+          ) : (
+            <React.Fragment>
+              <NavBar />
+              <Route exact path="/" component={Dashboard} />
+              <Route path="/add" component={AddPoll} />
+              <Route path="/leaderboard" component={Leaderboard} />
+              <Route path="/questions/:id" component={Poll} />
+            </React.Fragment>
+          )
         ) : (
-          <React.Fragment>
-            <NavBar />
-            <Route exact path="/" component={Dashboard} />
-            <Route path="/add" component={AddPoll} />
-            <Route path="/leaderboard" component={Leaderboard} />
-            <Route path="/questions/:id" component={Poll} />
-          </React.Fragment>
+          <></>
         )}
       </Box>
     );
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
+const mapStateToProps = ({ authedUser, loadingBar }) => {
   return {
-    authedUser
+    authedUser,
+    loading: loadingBar.default
   };
 };
 
