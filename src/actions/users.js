@@ -24,7 +24,6 @@ export const handleAddUser = (user) => {
     dispatch(showLoading());
     _saveUser(user)
       .then((formattedUser) => {
-        console.log(formattedUser);
         dispatch(addUser(formattedUser));
         dispatch(setAuthedUser(formattedUser.id));
       })

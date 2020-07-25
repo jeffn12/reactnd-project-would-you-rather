@@ -55,15 +55,12 @@ export class Poll extends Component {
             avatar={<Avatar src={author.avatarURL} />}
             title={`${author.name} wants to know:`}
             subheader="would you rather..."
-          >
-            {console.log(this.props.location)}
-          </CardHeader>
+          ></CardHeader>
           {hasAnswered ? (
             <AnsweredPollStats id={id} /> // If the user has already answered the poll, render the stats for it
           ) : (
             // If the user has not answered the poll, render both options
             <CardContent>
-              {console.log("author: ", author)}
               <Button
                 fullWidth={true}
                 variant="outlined"
