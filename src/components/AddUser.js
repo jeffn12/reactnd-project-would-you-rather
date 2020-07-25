@@ -122,13 +122,7 @@ export class AddUser extends Component {
   }
 }
 
-const mapStateToProps = ({ authedUser }) => {
-  return {
-    authedUser
-  };
-};
-
-export default connect(mapStateToProps)(AddUser);
+export default connect()(AddUser);
 
 const StyledTextField = withStyles({
   root: {
