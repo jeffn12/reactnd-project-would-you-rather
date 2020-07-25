@@ -8,6 +8,7 @@ import {
   Container,
   Card,
   CardHeader,
+  CardMedia,
   CardContent,
   Button,
   TextField,
@@ -71,6 +72,10 @@ export class AddUser extends Component {
       >
         <Box w={1}>
           <Card>
+            <CardMedia
+              style={{ height: "25%", minHeight: "140px" }}
+              image="/would_you_rather_logo.jpg"
+            />
             <CardHeader
               title="add a new user"
               subheader="(all information is required)"
