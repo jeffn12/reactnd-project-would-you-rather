@@ -17,7 +17,7 @@ export class LoginPage extends Component {
     return (
       <Box display="flex" justifyContent="center" my="5rem">
         <Card>
-          <StyledCardMedia image="jeffn12_avatar.jpg" />
+          <StyledCardMedia image="/jeffn12_avatar.jpg" />
           <CardHeader title="would you rather?" subheader="log in to play" />
           <CardContent children={<UserSelector />} />
         </Card>
