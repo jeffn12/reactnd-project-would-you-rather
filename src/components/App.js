@@ -31,11 +31,11 @@ export class App extends Component {
             backgroundColor: "red"
           }}
         />
-        <Route path="/add-user" component={AddUser} />
         {loading === 0 ? (
           !authedUser ? (
             <>
-              <LoginPage />
+              <Route exact path="/" component={LoginPage} />
+              <Route path="/add-user" component={AddUser} />
             </>
           ) : (
             <React.Fragment>
