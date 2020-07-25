@@ -8,11 +8,11 @@ import Leaderboard from "./Leaderboard";
 import AddPoll from "./AddPoll";
 import Poll from "./Poll";
 import LoadingBar from "react-redux-loading-bar";
+import AddUser from "./AddUser";
 // Routing
 import { Route } from "react-router-dom";
 // Material UI
 import { Box } from "@material-ui/core";
-
 // Actions
 import { handleInitialData } from "../actions/shared";
 
@@ -31,9 +31,12 @@ export class App extends Component {
             backgroundColor: "red"
           }}
         />
+        <Route path="/add-user" component={AddUser} />
         {loading === 0 ? (
           !authedUser ? (
-            <LoginPage />
+            <>
+              <LoginPage />
+            </>
           ) : (
             <React.Fragment>
               <NavBar />

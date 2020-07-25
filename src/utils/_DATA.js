@@ -192,9 +192,9 @@ export function _saveUser(user) {
           ...users,
           [user.id]: formattedUser
         };
-        res();
+        res(formattedUser);
       } else {
-        rej("User already exists");
+        rej({ code: 409, message: "user already exists" });
       }
     }, 1000);
   });

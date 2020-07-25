@@ -2,14 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 // Components
 import UserSelector from "./UserSelector";
+// Routing
+import { Link } from "react-router-dom";
 // Material UI
 import {
   Box,
   Card,
   CardHeader,
   CardContent,
-  CardMedia
+  CardMedia,
+  Fab
 } from "@material-ui/core";
+import AddIcon from "@material-ui/icons/Add";
 import { withStyles } from "@material-ui/styles";
 
 export class LoginPage extends Component {
@@ -21,6 +25,19 @@ export class LoginPage extends Component {
           <CardHeader subheader="log in to play" />
           <CardContent children={<UserSelector />} />
         </Card>
+        <Link to="/add-user">
+          <Fab
+            variant="extended"
+            style={{
+              position: "absolute",
+              bottom: 20,
+              right: 20
+            }}
+          >
+            <AddIcon />
+            add user
+          </Fab>
+        </Link>
       </Box>
     );
   }
