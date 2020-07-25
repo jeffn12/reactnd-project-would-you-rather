@@ -18,7 +18,7 @@ export class LoginPage extends Component {
       <Box display="flex" justifyContent="center" my="5rem">
         <Card>
           <StyledCardMedia image="/would_you_rather_logo.jpg" />
-          <CardHeader title="would you rather?" subheader="log in to play" />
+          <CardHeader subheader="log in to play" />
           <CardContent children={<UserSelector />} />
         </Card>
       </Box>

@@ -7,9 +7,10 @@ import {
   Button,
   ButtonGroup,
   Card,
-  Typography,
-  CardHeader
+  CardHeader,
+  CardMedia
 } from "@material-ui/core";
+import { withStyles } from "@material-ui/styles";
 // Constants
 import { ANSWERED, NOT_ANSWERED, ALL } from "./PollList";
 
@@ -32,9 +33,13 @@ export class Dashboard extends Component {
         flexDirection="column"
         alignItems="center"
       >
-        <Typography align="center" variant="h5" children="Would You Rather?" />
         <Box width={1}>
           <Card>
+            <StyledCardMedia
+              image="/would_you_rather_logo.jpg"
+              alt="logo with the text would you rather?"
+              height="140px"
+            />
             <CardHeader subheader="which questions would you like to see?" />
             <ButtonGroup size="large" variant="text" fullWidth={true}>
               <Button
@@ -77,3 +82,7 @@ export class Dashboard extends Component {
 }
 
 export default Dashboard;
+
+const StyledCardMedia = withStyles({
+  root: { minHeight: "200px", width: "50%", margin: "0 auto" }
+})(CardMedia);
