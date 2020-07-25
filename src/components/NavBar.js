@@ -56,7 +56,7 @@ export class NavBar extends Component {
                 <Typography variant="body2" style={{ padding: ".25rem" }}>
                   welcome, {user.id}!
                 </Typography>
-                <Avatar src={`/${user.avatarURL}`} />
+                <Avatar src={user.avatarURL} />
               </Box>
             </Tooltip>
           </Box>

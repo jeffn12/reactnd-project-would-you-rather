@@ -52,7 +52,7 @@ export class Poll extends Component {
       >
         <Card style={{ margin: "0.5rem" }}>
           <CardHeader
-            avatar={<Avatar src={`/${author.avatarURL}`} />}
+            avatar={<Avatar src={author.avatarURL} />}
             title={`${author.name} wants to know:`}
             subheader="would you rather..."
           >

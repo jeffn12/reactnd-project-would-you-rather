@@ -25,7 +25,7 @@ export const LeaderBoardEntry = (props) => {
       <Typography variant="h5" style={{ marginRight: "2rem" }}>
         {place}.
       </Typography>
-      <StyledAvatar src={`/${avatarURL}`} alt={"avatar of " + id} />
+      <StyledAvatar src={avatarURL} alt={"avatar of " + id} />
       <Box
         minWidth="10rem"
         mx="0.5rem"

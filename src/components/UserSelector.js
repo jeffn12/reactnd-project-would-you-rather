@@ -3,7 +3,13 @@ import { connect } from "react-redux";
 // Actions
 import { setAuthedUser } from "../actions/authedUser";
 // Material UI
-import { InputLabel, MenuItem, Select, FormControl } from "@material-ui/core";
+import {
+  Avatar,
+  InputLabel,
+  MenuItem,
+  Select,
+  FormControl
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 
 export class UserSelector extends Component {
@@ -23,6 +29,10 @@ export class UserSelector extends Component {
         >
           {userIds.map((id) => (
             <MenuItem key={id} value={id}>
+              <Avatar
+                src={users[id].avatarURL}
+                style={{ marginRight: "1rem" }}
+              />
               {id}
             </MenuItem>
           ))}

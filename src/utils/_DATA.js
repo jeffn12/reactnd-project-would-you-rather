@@ -12,7 +12,7 @@ let users = {
   sarahedo: {
     id: "sarahedo",
     name: "Sarah Edo",
-    avatarURL: "lethu-zimu-bkyKiFfV91Q-unsplash.jpg",
+    avatarURL: "/lethu-zimu-bkyKiFfV91Q-unsplash.jpg",
     answers: {
       "8xf0y6ziyjabvozdd253nd": "optionOne",
       "6ni6ok3ym7mf1p33lnez": "optionTwo",
@@ -24,7 +24,7 @@ let users = {
   tylermcginnis: {
     id: "tylermcginnis",
     name: "Tyler McGinnis",
-    avatarURL: "imansyah-muhamad-putera-n4KewLKFOZw-unsplash.jpg",
+    avatarURL: "/imansyah-muhamad-putera-n4KewLKFOZw-unsplash.jpg",
     answers: {
       vthrdm985a262al8qx3do: "optionOne",
       xj352vofupe1dqz9emx13r: "optionTwo"
@@ -34,7 +34,7 @@ let users = {
   johndoe: {
     id: "johndoe",
     name: "John Doe",
-    avatarURL: "erik-mclean-DGjL0PFQK60-unsplash.jpg",
+    avatarURL: "/erik-mclean-DGjL0PFQK60-unsplash.jpg",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
@@ -45,7 +45,7 @@ let users = {
   jeffn12: {
     id: "jeffn12",
     name: "Jeff Neuberger",
-    avatarURL: "jeffn12_avatar.jpg",
+    avatarURL: "/jeffn12_avatar.jpg",
     answers: {
       xj352vofupe1dqz9emx13r: "optionOne",
       vthrdm985a262al8qx3do: "optionTwo",
