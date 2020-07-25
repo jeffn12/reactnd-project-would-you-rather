@@ -14,7 +14,6 @@ import {
   Fab
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
-import { withStyles } from "@material-ui/styles";
 
 /**
  * LoginPage Component
@@ -26,7 +25,10 @@ export class LoginPage extends Component {
     return this.props.location.pathname !== "/add-user" ? (
       <Box display="flex" justifyContent="center" my="5rem">
         <Card>
-          <StyledCardMedia image="/would_you_rather_logo.jpg" />
+          <CardMedia
+            style={{ height: "25%", minHeight: "140px" }}
+            image="/would_you_rather_logo.jpg"
+          />
           <CardHeader subheader="log in to play" />
           <CardContent children={<UserSelector />} />
         </Card>
@@ -57,8 +59,3 @@ const mapStateToProps = ({ authedUser }) => {
 };
 
 export default connect(mapStateToProps)(LoginPage);
-
-// Style the card media so that it displays on card
-const StyledCardMedia = withStyles({
-  root: { height: "25%", minHeight: "140px" }
-})(CardMedia);
