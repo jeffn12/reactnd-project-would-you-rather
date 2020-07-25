@@ -1,10 +1,16 @@
-import { GET_USERS } from "../actions/users";
+import { GET_USERS, ADD_USER } from "../actions/users";
 import { ANSWER_POLL, ADD_POLL, CLEAR_ANSWER } from "../actions/shared";
 
 export const usersReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_USERS:
       return { ...state, ...action.users };
+    case ADD_USER:
+      if (!state[action.user.id]) {
+        return { ...state, ...action.user };
+      } else {
+        return { ...state };
+      }
     case ANSWER_POLL:
       return {
         ...state,

@@ -171,6 +171,35 @@ function formatQuestion({ optionOneText, optionTwoText, author }) {
   };
 }
 
+// Custom function that return a formatted user for the DB
+function formatUser({ id, name, avatarURL }) {
+  return {
+    id,
+    name,
+    avatarURL,
+    answers: {},
+    questions: []
+  };
+}
+
+// Custom function that simulates saving a new user to a remote DB
+export function _saveUser(user) {
+  return new Promise((res, rej) => {
+    const formattedUser = formatUser(user);
+    setTimeout(() => {
+      if (!users[user.id]) {
+        users = {
+          ...users,
+          [user.id]: formattedUser
+        };
+        res();
+      } else {
+        rej("User already exists");
+      }
+    }, 1000);
+  });
+}
+
 export function _saveQuestion(question) {
   return new Promise((res, rej) => {
     const authedUser = question.author;
