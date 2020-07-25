@@ -40,7 +40,7 @@ export class Poll extends Component {
     const author = users[poll.author]; // The user object of the person who created the poll
     const currentUser = users[authedUser]; // The user object of the person who is answering the poll
     const hasAnswered = poll[currentUser.answers[id]] ? true : false; // true if user answered already
-
+    const dateCreated = new Date(poll.timestamp).toLocaleDateString();
     return (
       <Link
         to={() => `/questions/${id}`}
@@ -75,6 +75,9 @@ export class Poll extends Component {
               />
             </CardContent>
           )}
+          <Typography variant="caption" style={{ paddingRight: "1rem" }}>
+            this poll was created on {dateCreated}
+          </Typography>
         </Card>
       </Link>
     );
