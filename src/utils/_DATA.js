@@ -46,11 +46,7 @@ let users = {
     id: "jeffn12",
     name: "Jeff Neuberger",
     avatarURL: "/jeffn12_avatar.jpg",
-    answers: {
-      xj352vofupe1dqz9emx13r: "optionOne",
-      vthrdm985a262al8qx3do: "optionTwo",
-      "6ni6ok3ym7mf1p33lnez": "optionTwo"
-    },
+    answers: {},
     questions: []
   }
 };
