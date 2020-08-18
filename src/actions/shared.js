@@ -22,7 +22,6 @@ export const handleInitialData = () => {
     return Promise.all([_getQuestions(), _getUsers()])
       .then(async ([questions, users]) => [questions, await users.json()])
       .then(([questions, users]) => {
-        console.log("users: ", users);
         dispatch(getPolls(questions));
         dispatch(getUsers(users));
         dispatch(hideLoading());

@@ -40,7 +40,7 @@ export const _handleAddUser = (user) => {
     })
       .then((response) => response.json())
       .then((user) => {
-        console.log(user);
+        dispatch(addUser(user));
       })
       //.then((formattedUser) => {
       //dispatch(addUser(formattedUser));
@@ -66,7 +66,7 @@ export const getUsers = (users) => {
   };
 };
 
-export const addUser = (user) => {
+export const addUser = ({ user }) => {
   return {
     type: ADD_USER,
     user

@@ -17,7 +17,7 @@ import {
 import { withStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
-import { _handleAddUser } from "../actions/users";
+import { _handleAddUser, getUsers } from "../actions/users";
 
 /**
  * AddUser Component
@@ -55,8 +55,10 @@ export class AddUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { username, name, avatarURL } = this.state;
+    console.log(this.props);
     this.setState({ username: "", name: "", avatarURL: "" });
     this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
+    this.props.dispatch(getUsers());
     this.props.history.push("/"); // push back to the home route
   };
 
@@ -148,7 +150,13 @@ export class AddUser extends Component {
   }
 }
 
-export default connect()(AddUser);
+const mapStateToProps = ({ users }) => {
+  return {
+    users
+  };
+};
+
+export default connect(mapStateToProps)(AddUser);
 
 // Custom Style
 const StyledTextField = withStyles({
