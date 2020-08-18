@@ -12,3 +12,12 @@ export function _getUsers() {
 export function _getQuestions() {
   return fetch(QUESTIONS_API_URI);
 }
+
+export function _saveQuestion(question) {
+  return fetch(QUESTIONS_API_URI, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    referrerPolicy: "no-referrer",
+    body: JSON.stringify(question)
+  });
+}

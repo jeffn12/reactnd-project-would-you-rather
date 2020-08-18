@@ -17,7 +17,7 @@ import {
 import { withStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
-import { _handleAddUser, getUsers } from "../actions/users";
+import { _handleAddUser } from "../actions/users";
 
 /**
  * AddUser Component
@@ -57,7 +57,6 @@ export class AddUser extends Component {
     const { username, name, avatarURL } = this.state;
     this.setState({ username: "", name: "", avatarURL: "" });
     this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
-    this.props.dispatch(getUsers());
     this.props.history.push("/"); // push back to the home route
   };
 

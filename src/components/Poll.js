@@ -41,6 +41,8 @@ export class Poll extends Component {
     const currentUser = users[authedUser]; // The user object of the person who is answering the poll
     const hasAnswered = poll[currentUser.answers[id]] ? true : false; // true if user answered already
     const dateCreated = new Date(poll.timestamp).toLocaleDateString();
+
+    console.log(author);
     return (
       <Link
         to={() => `/questions/${id}`}

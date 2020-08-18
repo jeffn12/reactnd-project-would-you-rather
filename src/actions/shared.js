@@ -1,8 +1,9 @@
-import { _saveQuestionAnswer, _saveQuestion } from "../utils/_DATA";
-import { _getUsers, _getQuestions } from "../utils/api";
+import { _saveQuestionAnswer } from "../utils/_DATA";
+import { _getUsers, _getQuestions, _saveQuestion } from "../utils/api";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
+import { QUESTIONS_API_URI } from "../utils/vars";
 
 export const ANSWER_POLL = "ANSWER_POLL";
 export const ADD_POLL = "ADD_POLL";
@@ -46,11 +47,36 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
 };
 
 // Add a poll to the database.  The API returns a formatted question
-export const handleAddPoll = (author, optionOneText, optionTwoText) => {
+export const _handleAddPoll = (author, optionOneText, optionTwoText) => {
+  return async (dispatch) => {
+    dispatch(showLoading());
+    await fetch(QUESTIONS_API_URI, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify({ author, optionOneText, optionTwoText })
+    })
+      .then((question) => {
+        dispatch(addPoll(question));
+        dispatch(hideLoading());
+      })
+      .catch((err) => {
+        dispatch(hideLoading());
+        console.log("There was an error: ", err);
+        alert("There was an error adding the poll.  Please try again.");
+      });
+  };
+};
+
+// Send a new poll to the server, receive the question back (success) or error (fail)
+export const handleAddPoll = (question) => {
+  const { author, optionOneText, optionTwoText } = question;
   return (dispatch) => {
     dispatch(showLoading());
     _saveQuestion({ author, optionOneText, optionTwoText })
-      .then((question) => {
+      .then((response) => response.json())
+      .then(({ question }) => {
+        console.log(question);
         dispatch(addPoll(question));
         dispatch(hideLoading());
       })

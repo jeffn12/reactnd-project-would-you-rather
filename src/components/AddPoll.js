@@ -42,7 +42,13 @@ export class AddPoll extends Component {
   handleSubmit = (e) => {
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch, authedUser } = this.props;
-    dispatch(handleAddPoll(authedUser, optionOneText, optionTwoText));
+    dispatch(
+      handleAddPoll({
+        author: authedUser,
+        optionOneText: optionOneText,
+        optionTwoText: optionTwoText
+      })
+    );
     this.props.history.push("/");
   };
 
