@@ -18,7 +18,6 @@ import { withStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
 import { _handleAddUser } from "../actions/users";
-import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 /**
  * AddUser Component
