@@ -30,19 +30,22 @@ export const handleAddUser = (user) => {
 
 // Send new user details to server for creation.  Server responds with a JSON user object
 export const _handleAddUser = (user) => {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(showLoading());
-    fetch(USERS_API_URI, {
+    await fetch(USERS_API_URI, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       referrerPolicy: "no-referrer",
       body: JSON.stringify(user)
     })
       .then((response) => response.json())
-      .then((formattedUser) => {
-        dispatch(addUser(formattedUser));
-        dispatch(setAuthedUser(formattedUser.id));
+      .then((user) => {
+        console.log(user);
       })
+      //.then((formattedUser) => {
+      //dispatch(addUser(formattedUser));
+      //dispatch(setAuthedUser(formattedUser.id));
+      //})
       .catch((err) => {
         console.log("Error adding user: ", JSON.stringify(err));
         alert(

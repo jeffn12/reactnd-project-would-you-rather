@@ -17,7 +17,7 @@ import {
 import { withStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
-import { handleAddUser } from "../actions/users";
+import { _handleAddUser } from "../actions/users";
 
 /**
  * AddUser Component
@@ -26,7 +26,7 @@ import { handleAddUser } from "../actions/users";
  */
 export class AddUser extends Component {
   state = {
-    id: "",
+    username: "",
     name: "",
     avatarURL: ""
   };
@@ -35,7 +35,7 @@ export class AddUser extends Component {
   handleIdText = (e) => {
     e.persist();
     this.setState(() => ({
-      id: e.target.value
+      username: e.target.value
     }));
   };
   handleNameText = (e) => {
@@ -54,14 +54,14 @@ export class AddUser extends Component {
   // Submission Handler
   handleSubmit = (e) => {
     e.preventDefault();
-    const { id, name, avatarURL } = this.state;
-    this.setState({ id: "", name: "", avatarURL: "" });
-    this.props.dispatch(handleAddUser({ id, name, avatarURL }));
+    const { username, name, avatarURL } = this.state;
+    this.setState({ username: "", name: "", avatarURL: "" });
+    this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
     this.props.history.push("/"); // push back to the home route
   };
 
   render() {
-    const { id, name, avatarURL } = this.state;
+    const { username, name, avatarURL } = this.state;
 
     return (
       <Box
@@ -85,8 +85,8 @@ export class AddUser extends Component {
                 children={
                   <StyledTextField
                     id="idText"
-                    label="id"
-                    value={id}
+                    label="username"
+                    value={username}
                     onChange={this.handleIdText}
                     fullWidth
                     required
@@ -111,7 +111,6 @@ export class AddUser extends Component {
                     label="avatar url"
                     value={avatarURL}
                     onChange={this.handleAvatarUrlText}
-                    required
                   />
                 }
               />
@@ -122,7 +121,7 @@ export class AddUser extends Component {
                     variant="contained"
                     color="primary"
                     fullWidth
-                    disabled={id === "" || name === "" || avatarURL === ""}
+                    disabled={username === "" || name === ""}
                     onClick={this.handleSubmit}
                     children="ADD USER"
                   />
