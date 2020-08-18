@@ -1,6 +1,6 @@
 import { USERS_API_URI } from "../utils/vars";
+import { handleSetAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { setAuthedUser } from "./authedUser";
 
 export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER";
@@ -23,7 +23,7 @@ export const _handleAddUser = (user) => {
       .then((response) => response.json())
       .then((user) => {
         dispatch(addUser(user));
-        dispatch(setAuthedUser(user.user.username));
+        dispatch(handleSetAuthedUser(user.user.username));
       })
       .catch((err) => {
         console.log("Error adding user: ", JSON.stringify(err));

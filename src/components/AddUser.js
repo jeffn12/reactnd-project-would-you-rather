@@ -18,6 +18,7 @@ import { withStyles } from "@material-ui/styles";
 import HomeIcon from "@material-ui/icons/Home";
 // Action Handlers
 import { _handleAddUser } from "../actions/users";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 
 /**
  * AddUser Component
@@ -52,11 +53,11 @@ export class AddUser extends Component {
   };
 
   // Submission Handler
-  handleSubmit = (e) => {
+  handleSubmit = async (e) => {
     e.preventDefault();
     const { username, name, avatarURL } = this.state;
     this.setState({ username: "", name: "", avatarURL: "" });
-    this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
+    await this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
     this.props.history.push("/"); // push back to the home route
   };
 

@@ -15,7 +15,7 @@ export const CLEAR_POLL = "CLEAR_POLL";
 // Fetch list of polls and users, put into store
 export const handleInitialData = () => {
   return (dispatch) => {
-    //dispatch(showLoading());
+    dispatch(showLoading());
     return Promise.all([_getQuestions(), _getUsers()])
       .then(async ([questions, users]) => [
         await questions.json(),
@@ -50,30 +50,32 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
 //  Updates optimistically
 export const handleAddPoll = (question) => {
   const { author, optionOne, optionTwo, authedUser } = question; // destructure question info
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(showLoading());
     dispatch(addPoll(question, authedUser)); // optimistically add poll to redux store
-    _saveQuestion({ author, optionOne, optionTwo }).then(async (response) => {
-      // attempt to save on server
-      if (response.status === 500) {
-        // if the server returns an error...
-        dispatch(clearPoll(question)); // clear the new poll from redux
-        console.log(
-          // Log error information
-          "There was an error: ",
-          response.status,
-          response.statusText
-        );
-        alert("There was an error adding the poll.  Please try again."); // tell the user
-      } else {
-        // server responds 'OK' to request to add poll
-        const { questions } = await _getQuestions().then((
-          response // pull the questions from the server
-        ) => response.json());
-        dispatch(clearPoll(question)); // clear the optimistic entry in redux
-        dispatch(getPolls(questions)); // refresh redux with the updated question list from server
+    await _saveQuestion({ author, optionOne, optionTwo }).then(
+      async (response) => {
+        // attempt to save on server
+        if (response.status === 500) {
+          // if the server returns an error...
+          dispatch(clearPoll(question)); // clear the new poll from redux
+          console.log(
+            // Log error information
+            "There was an error: ",
+            response.status,
+            response.statusText
+          );
+          alert("There was an error adding the poll.  Please try again."); // tell the user
+        } else {
+          // server responds 'OK' to request to add poll
+          const { questions } = await _getQuestions().then((
+            response // pull the questions from the server
+          ) => response.json());
+          dispatch(clearPoll(question)); // clear the optimistic entry in redux
+          dispatch(getPolls(questions)); // refresh redux with the updated question list from server
+        }
       }
-    });
+    );
     dispatch(hideLoading());
   };
 };
