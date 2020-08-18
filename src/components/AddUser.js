@@ -55,7 +55,6 @@ export class AddUser extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     const { username, name, avatarURL } = this.state;
-    console.log(this.props);
     this.setState({ username: "", name: "", avatarURL: "" });
     this.props.dispatch(_handleAddUser({ username, name, avatarURL }));
     this.props.dispatch(getUsers());
@@ -150,13 +149,7 @@ export class AddUser extends Component {
   }
 }
 
-const mapStateToProps = ({ users }) => {
-  return {
-    users
-  };
-};
-
-export default connect(mapStateToProps)(AddUser);
+export default connect()(AddUser);
 
 // Custom Style
 const StyledTextField = withStyles({
