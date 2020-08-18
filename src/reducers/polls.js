@@ -1,5 +1,10 @@
 import { GET_POLLS } from "../actions/polls";
-import { ANSWER_POLL, ADD_POLL, CLEAR_ANSWER } from "../actions/shared";
+import {
+  ANSWER_POLL,
+  ADD_POLL,
+  CLEAR_ANSWER,
+  CLEAR_POLL
+} from "../actions/shared";
 
 /**
  * pollsReducer functions:
@@ -40,9 +45,21 @@ export const pollsReducer = (state = {}, action) => {
         }
       };
     case ADD_POLL:
+      const { question } = action;
       return {
         ...state,
-        [action.question.id]: action.question
+        temp: {
+          optionOne: { text: question.optionOne, votes: [] },
+          optionTwo: { text: question.optionTwo, votes: [] },
+          timestamp: Date.now(),
+          author: action.authedUser
+        }
+      };
+    case CLEAR_POLL:
+      let newState = state;
+      delete newState["temp"];
+      return {
+        ...newState
       };
     default:
       return state;
