@@ -5,9 +5,9 @@ export const SET_AUTHED_USER = "SET_AUTHED_USER";
  *  set authed user - send a user ID
  *
  */
-export const setAuthedUser = (id) => {
+export const setAuthedUser = (username) => {
   return {
     type: SET_AUTHED_USER,
-    id
+    id: username
   };
 };

@@ -6,6 +6,7 @@ import { SET_AUTHED_USER } from "../actions/authedUser";
  *
  */
 export const authedUserReducer = (state = null, action) => {
+  console.log("reducing authedUser:", action.id);
   switch (action.type) {
     case SET_AUTHED_USER:
       return action.id;

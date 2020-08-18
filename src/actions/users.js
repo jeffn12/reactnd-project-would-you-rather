@@ -41,6 +41,7 @@ export const _handleAddUser = (user) => {
       .then((response) => response.json())
       .then((user) => {
         dispatch(addUser(user));
+        dispatch(setAuthedUser(user.user.username));
       })
       //.then((formattedUser) => {
       //dispatch(addUser(formattedUser));

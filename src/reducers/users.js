@@ -14,7 +14,6 @@ export const usersReducer = (state = {}, action) => {
     case GET_USERS:
       return { ...state, ...action.users };
     case ADD_USER:
-      console.log("reducing...", action.user);
       if (!state[action.user.id]) {
         return { ...state, [action.user.username]: action.user };
       } else {
