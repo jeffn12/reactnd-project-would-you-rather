@@ -1,9 +1,5 @@
-import {
-  _getQuestions,
-  _saveQuestionAnswer,
-  _saveQuestion
-} from "../utils/_DATA";
-import { _getUsers } from "../utils/api";
+import { _saveQuestionAnswer, _saveQuestion } from "../utils/_DATA";
+import { _getUsers, _getQuestions } from "../utils/api";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -20,9 +16,12 @@ export const handleInitialData = () => {
   return (dispatch) => {
     dispatch(showLoading());
     return Promise.all([_getQuestions(), _getUsers()])
-      .then(async ([questions, users]) => [questions, await users.json()])
-      .then(([questions, users]) => {
-        //dispatch(getPolls(questions));
+      .then(async ([questions, users]) => [
+        await questions.json(),
+        await users.json()
+      ])
+      .then(([{ questions }, users]) => {
+        dispatch(getPolls(questions));
         dispatch(getUsers(users));
         dispatch(hideLoading());
       });
