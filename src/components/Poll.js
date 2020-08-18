@@ -42,7 +42,6 @@ export class Poll extends Component {
     const hasAnswered = poll[currentUser.answers[id]] ? true : false; // true if user answered already
     const dateCreated = new Date(poll.timestamp).toLocaleDateString();
 
-    console.log(author);
     return (
       <Link
         to={() => `/questions/${id}`}
@@ -52,7 +51,7 @@ export class Poll extends Component {
         <Card style={{ margin: "0.5rem" }}>
           <CardHeader
             avatar={<Avatar src={author.avatarURL} />}
-            title={`${author.name} wants to know:`}
+            title={`${author.username} wants to know:`}
             subheader="would you rather..."
           ></CardHeader>
           {hasAnswered ? (
