@@ -52,7 +52,7 @@ export const handleAddPoll = (question) => {
   return (dispatch) => {
     dispatch(addPoll(question, authedUser));
     dispatch(showLoading());
-    _saveQuestion({ author, optionOne, optionTwo }).then((response) => {
+    _saveQuestion({ author, optionOne, optionTwo }).then(async (response) => {
       if (response.status === 500) {
         dispatch(clearPoll(question));
         console.log(
@@ -61,6 +61,12 @@ export const handleAddPoll = (question) => {
           response.statusText
         );
         alert("There was an error adding the poll.  Please try again.");
+      } else {
+        const { questions } = await _getQuestions().then((response) =>
+          response.json()
+        );
+        dispatch(clearPoll(question));
+        dispatch(getPolls(questions));
       }
     });
     dispatch(hideLoading());

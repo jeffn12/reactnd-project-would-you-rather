@@ -35,12 +35,13 @@ export class Poll extends Component {
         </Card>
       );
     }
-    console.log("Rendering poll: ", polls[id]);
     const poll = polls[id]; // Use the ID to get the poll Object
     const author = users[poll.author]; // The user object of the person who created the poll
     const currentUser = users[authedUser]; // The user object of the person who is answering the poll
     const hasAnswered = poll[currentUser.answers[id]] ? true : false; // true if user answered already
     const dateCreated = new Date(poll.timestamp).toLocaleDateString();
+
+    //console.log(author);
 
     return (
       <Link

@@ -17,6 +17,7 @@ import {
 export const pollsReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_POLLS:
+      console.log(action.polls);
       return { ...state, ...action.polls };
     case ANSWER_POLL:
       return {
