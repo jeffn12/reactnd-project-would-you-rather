@@ -62,7 +62,7 @@ export const _handleAddUser = (user) => {
 export const getUsers = (users) => {
   return {
     type: GET_USERS,
-    users
+    ...users
   };
 };
 

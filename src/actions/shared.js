@@ -1,9 +1,9 @@
 import {
   _getQuestions,
-  _getUsers,
   _saveQuestionAnswer,
   _saveQuestion
 } from "../utils/_DATA";
+import { _getUsers } from "../utils/api";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
@@ -19,13 +19,14 @@ export const CLEAR_ANSWER = "CLEAR_ANSWER";
 export const handleInitialData = () => {
   return (dispatch) => {
     dispatch(showLoading());
-    return Promise.all([_getQuestions(), _getUsers()]).then(
-      ([questions, users]) => {
+    return Promise.all([_getQuestions(), _getUsers()])
+      .then(async ([questions, users]) => [questions, await users.json()])
+      .then(([questions, users]) => {
+        console.log("users: ", users);
         dispatch(getPolls(questions));
         dispatch(getUsers(users));
         dispatch(hideLoading());
-      }
-    );
+      });
   };
 };
 
