@@ -29,21 +29,6 @@ async function _saveQuestionAnswerToQuestion({ authedUser, qid, answer }) {
       authedUser
     })
     .then((response) => response);
-
-  /* return fetch(QUESTIONS_API_URI, {
-    method: "PUT",
-    mode: "cors",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Headers": "x-requested-with"
-    },
-    referrerPolicy: "no-referrer",
-    body: {
-      id: qid,
-      option: answer,
-      authedUser
-    }
-  }).then((response) => response); */
 }
 
 async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
@@ -54,17 +39,6 @@ async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
       authedUser
     })
     .then((response) => response);
-  /* return fetch(USERS_API_URI, {
-    method: "PUT",
-    mode: "no-cors",
-    headers: { "Content-Type": "application/json" },
-    referrerPolicy: "no-referrer",
-    body: {
-      questionId: qid,
-      option: answer,
-      authedUser
-    }
-  }).then((response) => response); */
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
