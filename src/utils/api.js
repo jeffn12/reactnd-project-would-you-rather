@@ -16,7 +16,7 @@ export function _getQuestions() {
 export async function _saveQuestion(question) {
   return axios
     .post(QUESTIONS_API_URI, {
-      question
+      ...question
     })
     .then((response) => response)
     .catch((err) => err);

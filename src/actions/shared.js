@@ -84,9 +84,11 @@ export const handleAddPoll = (question) => {
           alert("There was an error adding the poll.  Please try again."); // tell the user
         } else {
           // server responds 'OK' to request to add poll
-          const { questions } = await _getQuestions().then((
-            response // pull the questions from the server
-          ) => response.json());
+          const { questions } = await _getQuestions().then(
+            (
+              response // pull the questions from the server
+            ) => response
+          );
           dispatch(clearPoll(question)); // clear the optimistic entry in redux
           dispatch(getPolls(questions)); // refresh redux with the updated question list from server
         }
