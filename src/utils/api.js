@@ -10,7 +10,7 @@ export function _getUsers() {
 }
 
 export function _getQuestions() {
-  return fetch(QUESTIONS_API_URI);
+  return axios.get(QUESTIONS_API_URI).then((response) => response.data);
 }
 
 export async function _saveQuestion(question) {
