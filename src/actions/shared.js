@@ -1,4 +1,4 @@
-import { _saveQuestionAnswer } from "../utils/_DATA";
+import { _saveQuestionAnswer } from "../utils/api";
 import { _getUsers, _getQuestions, _saveQuestion } from "../utils/api";
 import { getPolls } from "./polls";
 import { getUsers } from "./users";
@@ -31,7 +31,7 @@ export const handleInitialData = () => {
 
 // Optimistically update the poll answer for the current user,
 //   if the "server" rejects the answer, it is reset
-export const handleAnswerPoll = (pollId, option, authedUser) => {
+export const _handleAnswerPoll = (pollId, option, authedUser) => {
   return (dispatch) => {
     dispatch(answerPoll(pollId, option, authedUser));
     dispatch(showLoading());
@@ -42,6 +42,25 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
         alert("There was an problem answering the poll.  Please try again.");
       }
     );
+    dispatch(hideLoading());
+  };
+};
+
+// Optimistically update the poll answer for the current user,
+//   if the "server" rejects the answer, it is reset
+export const handleAnswerPoll = (pollId, option, authedUser) => {
+  return async (dispatch) => {
+    dispatch(answerPoll(pollId, option, authedUser));
+    dispatch(showLoading());
+    await _saveQuestionAnswer({
+      authedUser,
+      qid: pollId,
+      answer: option
+    }).catch((err) => {
+      dispatch(clearPollAnswer(pollId, option, authedUser));
+      console.log("There was an error saving the poll response: ", err);
+      alert("There was an problem answering the poll.  Please try again.");
+    });
     dispatch(hideLoading());
   };
 };
