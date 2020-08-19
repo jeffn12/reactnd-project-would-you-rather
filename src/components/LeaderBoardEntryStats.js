@@ -52,7 +52,7 @@ export const LeaderBoardEntryStats = (props) => {
         justifyContent="start"
         alignItems="center"
       >
-        <Typography variant="2" align="center">
+        <Typography variant="body2" align="center">
           Number of Questions Asked
         </Typography>
         <Box display="flex" alignItems="center" width={1}>

@@ -39,7 +39,10 @@ export const LeaderBoardEntry = (props) => {
           <Avatar
             src={avatarURL}
             alt={"avatar of " + id}
-            style={{ width: "6rem", height: "6rem", display: "inline-block" }}
+            style={{
+              width: "6rem",
+              height: "6rem"
+            }}
           />
         </Badge>
       </Box>
