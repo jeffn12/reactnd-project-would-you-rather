@@ -14,12 +14,10 @@ export function _getQuestions() {
 }
 
 export async function _saveQuestion(question) {
-  return fetch(QUESTIONS_API_URI, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(question)
-  })
+  return axios
+    .post(QUESTIONS_API_URI, {
+      question
+    })
     .then((response) => response)
     .catch((err) => err);
 }
