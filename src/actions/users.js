@@ -1,6 +1,6 @@
-import { _saveUser } from "../utils/_DATA";
+import { USERS_API_URI } from "../utils/vars";
+import { handleSetAuthedUser } from "./authedUser";
 import { showLoading, hideLoading } from "react-redux-loading-bar";
-import { setAuthedUser } from "./authedUser";
 
 export const GET_USERS = "GET_USERS";
 export const ADD_USER = "ADD_USER";
@@ -8,14 +8,22 @@ export const ADD_USER = "ADD_USER";
 /**
  * Action Handlers
  */
-// Add a new user to the database.  The API call returns a formatted user
-export const handleAddUser = (user) => {
-  return (dispatch) => {
+
+// TODO: add functionality to DELETE a user ( endpoint: DELETE /api/users )
+// Send new user details to server for creation.  Server responds with a JSON user object
+export const _handleAddUser = (user) => {
+  return async (dispatch) => {
     dispatch(showLoading());
-    _saveUser(user)
-      .then((formattedUser) => {
-        dispatch(addUser(formattedUser));
-        dispatch(setAuthedUser(formattedUser.id));
+    await fetch(USERS_API_URI, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      referrerPolicy: "no-referrer",
+      body: JSON.stringify(user)
+    })
+      .then((response) => response.json())
+      .then((user) => {
+        dispatch(addUser(user));
+        dispatch(handleSetAuthedUser(user.user.username));
       })
       .catch((err) => {
         console.log("Error adding user: ", JSON.stringify(err));
@@ -33,11 +41,11 @@ export const handleAddUser = (user) => {
 export const getUsers = (users) => {
   return {
     type: GET_USERS,
-    users
+    ...users
   };
 };
 
-export const addUser = (user) => {
+export const addUser = ({ user }) => {
   return {
     type: ADD_USER,
     user

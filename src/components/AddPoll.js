@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { showLoading, hideLoading } from "react-redux-loading-bar";
 // Material UI
 import {
   Box,
@@ -42,7 +43,16 @@ export class AddPoll extends Component {
   handleSubmit = (e) => {
     const { optionOneText, optionTwoText } = this.state;
     const { dispatch, authedUser } = this.props;
-    dispatch(handleAddPoll(authedUser, optionOneText, optionTwoText));
+    dispatch(showLoading());
+    dispatch(
+      handleAddPoll({
+        author: authedUser,
+        optionOne: optionOneText,
+        optionTwo: optionTwoText,
+        authedUser
+      })
+    );
+    dispatch(hideLoading());
     this.props.history.push("/");
   };
 

@@ -29,31 +29,47 @@ export class App extends Component {
   };
 
   render() {
-    const { authedUser, loading } = this.props;
+    const { authedUser } = this.props;
 
     return (
       <Box>
-        <LoadingBar
+        <Box
           style={{
-            backgroundColor: "red"
+            position: "relative",
+            top: 0,
+            left: 0
           }}
-        />
-        {loading === 0 && // Render the app when the data is done loading
-          (!authedUser ? ( // If there is no authed user, show the login page
+        >
+          <LoadingBar
+            style={{
+              backgroundColor: "red",
+              height: "5px",
+              width: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0
+            }}
+            showFastActions
+          />
+        </Box>
+        {
+          /* loading === 0 && */ // Render the app when the data is done loading
+          !authedUser ? ( // If there is no authed user, show the login page
             <>
               <Route path="/" component={LoginPage} />
               <Route path="/add-user" component={AddUser} />
             </>
           ) : (
             // If there is an authed user, render the game
-            <React.Fragment>
+            <>
               <NavBar />
               <Route exact path="/" component={Dashboard} />
               <Route path="/add" component={AddPoll} />
               <Route path="/leaderboard" component={Leaderboard} />
               <Route path="/questions/:id" component={Poll} />
-            </React.Fragment>
-          ))}
+            </>
+          )
+        }
       </Box>
     );
   }

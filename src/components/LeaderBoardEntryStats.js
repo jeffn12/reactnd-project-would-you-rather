@@ -6,8 +6,6 @@ import {
   CircularProgress,
   Typography
 } from "@material-ui/core";
-// Material UI Hooks
-import { useMediaQuery } from "@material-ui/core";
 
 /**
  * LeaderBoardEntryStats Component
@@ -15,12 +13,14 @@ import { useMediaQuery } from "@material-ui/core";
  */
 export const LeaderBoardEntryStats = (props) => {
   const { user, totalQuestions } = props;
-  const mediaMatch = useMediaQuery("(min-width:660px)"); // For smaller screens, display graphs vertically
+
   return (
     <Box
       id="stats-info"
       display="flex"
-      flexDirection={mediaMatch ? "row" : "column"}
+      flexWrap="wrap"
+      alignItems="center"
+      justifyContent="center"
     >
       <Box
         mx="0.5rem"
@@ -52,7 +52,7 @@ export const LeaderBoardEntryStats = (props) => {
         justifyContent="start"
         alignItems="center"
       >
-        <Typography variant="2" align="center">
+        <Typography variant="body2" align="center">
           Number of Questions Asked
         </Typography>
         <Box display="flex" alignItems="center" width={1}>
@@ -74,6 +74,7 @@ export default LeaderBoardEntryStats;
 
 // Custom circular progress bar with percentage label
 const CircularProgressWithLabel = (value, total) => {
+  total = total === 0 ? 1 : total;
   return (
     <Box
       my="0.5rem"
