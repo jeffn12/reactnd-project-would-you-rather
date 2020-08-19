@@ -17,6 +17,9 @@ export const LeaderBoardEntry = (props) => {
       id="entry-box"
       display="flex"
       width="75%"
+      minWidth="375px"
+      maxWidth="575px"
+      padding="15px"
       border={1}
       borderColor="primary"
       m=".5rem"
