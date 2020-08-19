@@ -6,8 +6,6 @@ import {
   CircularProgress,
   Typography
 } from "@material-ui/core";
-// Material UI Hooks
-import { useMediaQuery } from "@material-ui/core";
 
 /**
  * LeaderBoardEntryStats Component
@@ -16,12 +14,13 @@ import { useMediaQuery } from "@material-ui/core";
 export const LeaderBoardEntryStats = (props) => {
   const { user, totalQuestions } = props;
 
-  const mediaMatch = useMediaQuery("(min-width:660px)"); // For smaller screens, display graphs vertically
   return (
     <Box
       id="stats-info"
       display="flex"
-      flexDirection={mediaMatch ? "row" : "column"}
+      flexWrap="wrap"
+      alignItems="center"
+      justifyContent="center"
     >
       <Box
         mx="0.5rem"
