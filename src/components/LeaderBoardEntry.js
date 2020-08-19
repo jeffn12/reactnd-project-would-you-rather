@@ -10,13 +10,16 @@ import LeaderBoardEntryStats from "./LeaderBoardEntryStats";
 export const LeaderBoardEntry = (props) => {
   const { user, totals, place } = props; // get the poll information
   const { totalQuestions } = totals;
-  const { id, name, avatarURL } = user; // get the user's information
+  const { _id, name, avatarURL } = user; // get the user's information
 
   return (
     <Box
       id="entry-box"
       display="flex"
       width="75%"
+      minWidth="375px"
+      maxWidth="575px"
+      padding="15px"
       border={1}
       borderColor="primary"
       m=".5rem"
@@ -38,7 +41,7 @@ export const LeaderBoardEntry = (props) => {
         >
           <Avatar
             src={avatarURL}
-            alt={"avatar of " + id}
+            alt={"avatar of " + _id}
             style={{
               width: "6rem",
               height: "6rem"
@@ -64,7 +67,7 @@ export const LeaderBoardEntry = (props) => {
             style={{ display: "inline-block", padding: ".125rem" }}
             variant="caption"
           >
-            ({id})
+            ({_id})
           </Typography>
         </Box>
         <LeaderBoardEntryStats user={user} totalQuestions={totalQuestions} />
