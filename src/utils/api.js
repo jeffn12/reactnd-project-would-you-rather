@@ -1,31 +1,37 @@
 /**
  * API access helper functions
  */
-
+import axios from "axios";
 import { USERS_API_URI } from "./vars";
 import { QUESTIONS_API_URI } from "./vars";
 
 export function _getUsers() {
-  return fetch(USERS_API_URI);
+  return axios.get(USERS_API_URI).then((response) => response.data);
 }
 
 export function _getQuestions() {
-  return fetch(QUESTIONS_API_URI);
+  return axios.get(QUESTIONS_API_URI).then((response) => response.data);
 }
 
 export async function _saveQuestion(question) {
-  return fetch(QUESTIONS_API_URI, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    referrerPolicy: "no-referrer",
-    body: JSON.stringify(question)
-  })
+  return axios
+    .post(QUESTIONS_API_URI, {
+      ...question
+    })
     .then((response) => response)
     .catch((err) => err);
 }
 
 async function _saveQuestionAnswerToQuestion({ authedUser, qid, answer }) {
-  return fetch(QUESTIONS_API_URI, {
+  return axios
+    .put(QUESTIONS_API_URI, {
+      id: qid,
+      option: answer,
+      authedUser
+    })
+    .then((response) => response);
+
+  /* return fetch(QUESTIONS_API_URI, {
     method: "PUT",
     mode: "cors",
     headers: {
@@ -38,11 +44,18 @@ async function _saveQuestionAnswerToQuestion({ authedUser, qid, answer }) {
       option: answer,
       authedUser
     }
-  }).then((response) => response);
+  }).then((response) => response); */
 }
 
 async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
-  return fetch(USERS_API_URI, {
+  return axios
+    .put(QUESTIONS_API_URI, {
+      questionId: qid,
+      option: answer,
+      authedUser
+    })
+    .then((response) => response);
+  /* return fetch(USERS_API_URI, {
     method: "PUT",
     mode: "no-cors",
     headers: { "Content-Type": "application/json" },
@@ -52,7 +65,7 @@ async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
       option: answer,
       authedUser
     }
-  }).then((response) => response);
+  }).then((response) => response); */
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
