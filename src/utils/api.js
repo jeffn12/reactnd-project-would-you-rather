@@ -18,8 +18,7 @@ export async function _saveQuestion(question) {
     .post(QUESTIONS_API_URI, {
       ...question
     })
-    .then((response) => response)
-    .catch((err) => err);
+    .then((response) => response);
 }
 
 async function _saveQuestionAnswerToQuestion({ authedUser, qid, answer }) {
@@ -49,7 +48,7 @@ async function _saveQuestionAnswerToQuestion({ authedUser, qid, answer }) {
 
 async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
   return axios
-    .put(QUESTIONS_API_URI, {
+    .put(USERS_API_URI, {
       questionId: qid,
       option: answer,
       authedUser
@@ -69,8 +68,14 @@ async function _saveQuestionAnswerToUser({ authedUser, qid, answer }) {
 }
 
 export function _saveQuestionAnswer({ authedUser, qid, answer }) {
-  return Promise.all([
-    _saveQuestionAnswerToQuestion({ authedUser, qid, answer }),
-    _saveQuestionAnswerToUser({ authedUser, qid, answer })
-  ]);
+  return axios
+    .all([
+      _saveQuestionAnswerToQuestion({ authedUser, qid, answer }),
+      _saveQuestionAnswerToUser({ authedUser, qid, answer })
+    ])
+    .then(
+      axios.spread(() => {
+        return;
+      })
+    );
 }

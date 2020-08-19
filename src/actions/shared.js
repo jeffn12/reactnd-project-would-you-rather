@@ -53,11 +53,13 @@ export const handleAnswerPoll = (pollId, option, authedUser) => {
       authedUser,
       qid: pollId,
       answer: option
-    }).catch((err) => {
-      dispatch(clearPollAnswer(pollId, option, authedUser));
-      console.log("There was an error saving the poll response: ", err);
-      alert("There was an problem answering the poll.  Please try again.");
-    });
+    })
+      .then((resps) => console.log(resps))
+      .catch((err) => {
+        dispatch(clearPollAnswer(pollId, option, authedUser));
+        console.log("There was an error saving the poll response: ", err);
+        alert("There was an problem answering the poll.  Please try again.");
+      });
     dispatch(hideLoading());
   };
 };
