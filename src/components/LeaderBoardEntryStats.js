@@ -15,6 +15,7 @@ import { useMediaQuery } from "@material-ui/core";
  */
 export const LeaderBoardEntryStats = (props) => {
   const { user, totalQuestions } = props;
+
   const mediaMatch = useMediaQuery("(min-width:660px)"); // For smaller screens, display graphs vertically
   return (
     <Box
@@ -74,6 +75,7 @@ export default LeaderBoardEntryStats;
 
 // Custom circular progress bar with percentage label
 const CircularProgressWithLabel = (value, total) => {
+  total = total === 0 ? 1 : total;
   return (
     <Box
       my="0.5rem"

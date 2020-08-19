@@ -12,6 +12,7 @@ import { Box, Typography } from "@material-ui/core";
  */
 export class Leaderboard extends Component {
   render() {
+    console.log(this.props);
     const { users, userIds, totalQuestions } = this.props;
 
     return (
