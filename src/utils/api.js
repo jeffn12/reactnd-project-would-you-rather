@@ -6,7 +6,7 @@ import { USERS_API_URI } from "./vars";
 import { QUESTIONS_API_URI } from "./vars";
 
 export function _getUsers() {
-  return fetch(USERS_API_URI);
+  return axios.get(USERS_API_URI).then((response) => response.data);
 }
 
 export function _getQuestions() {
