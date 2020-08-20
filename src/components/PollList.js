@@ -23,8 +23,12 @@ export class PollList extends Component {
     }
     const pollList =
       filter === ANSWERED
-        ? pollIds.filter((id) => users[authedUser].answers[id])
-        : pollIds.filter((id) => !users[authedUser].answers[id]);
+        ? pollIds.filter(
+            (id) => Object.assign({}, ...users[authedUser].answers)[id]
+          )
+        : pollIds.filter(
+            (id) => !Object.assign({}, ...users[authedUser].answers)[id]
+          );
     return pollList;
   };
 
