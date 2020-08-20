@@ -25,7 +25,7 @@ export class Poll extends Component {
   };
 
   render() {
-    const { polls, users, id, authedUser } = this.props;
+    const { polls, users, id } = this.props;
 
     // If the poll does not exist, show a "404: Not Found" error
     if (!polls[id]) {
