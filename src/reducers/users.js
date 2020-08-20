@@ -24,10 +24,10 @@ export const usersReducer = (state = {}, action) => {
         ...state,
         [action.authedUser]: {
           ...state[action.authedUser],
-          answers: {
+          answers: [
             ...state[action.authedUser].answers,
-            [action.pollId]: action.option
-          }
+            { [action.pollId]: action.option }
+          ]
         }
       };
     case CLEAR_ANSWER:
