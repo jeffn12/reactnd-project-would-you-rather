@@ -21,7 +21,7 @@ export class AnsweredPollStats extends Component {
   render() {
     const { id, poll, currentUser } = this.props;
 
-    const answer = currentUser.answers[id];
+    const answer = Object.assign({}, ...currentUser.answers)[id];
     const optionOneVotes = { raw: poll.optionOne.votes.length };
     const optionTwoVotes = { raw: poll.optionTwo.votes.length };
     const total = optionOneVotes.raw + optionTwoVotes.raw;
